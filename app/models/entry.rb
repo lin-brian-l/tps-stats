@@ -1,4 +1,4 @@
-class Entry < ActiveRecord::Base
+class Entry < ApplicationRecord
   validates :title, :body, { presence: true }
 
   def self.most_recent
