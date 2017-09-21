@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '~> 2.2', '>= 2.2.2'
 
+gem 'bcrypt'
+
 # PostgreSQL driver
 gem 'pg', '~> 0.18'
 
