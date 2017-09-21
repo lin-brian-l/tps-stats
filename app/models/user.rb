@@ -1,19 +1,28 @@
 class User < ApplicationRecord
-  validates :username, :email, presence: true, uniqueness: true
-  validates :password, presence: true
+  validates :username, presence: true, uniqueness: { message: "must be unique"}
+  validates :email, presence: true, uniqueness: true
+  validate :empty_password
+  validates :user_password, presence: true
+
+  def empty_password
+    if @temp_password.empty?
+      errors.add(:user_password, "must not be blank")
+    end
+  end
 
   def password
-    @password ||= BCrypt::Password.new(encrypted_password)
+    @password ||= BCrypt::Password.new(password)
   end
 
   def password=(new_password)
     @password = BCrypt::Password.create(new_password)
-    self.encrypted_password = @password
+    @temp_password = new_password
+    self.user_password = @password
   end
 
   def self.authenticate(username, password)
     @user = User.find_by(username: username)
-    if @user && @user.oassword == password
+    if @user && @user.user_password == password
       @user
     end
   end

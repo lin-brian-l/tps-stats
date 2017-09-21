@@ -1,5 +1,14 @@
 <h1>Create a Bacon Blog Account</h1>
 
+<% if @errors %>
+  <span>Something went wrong:</span>
+  <ul class="error-list pad-b-2">
+    <% @errors.each do |error| %>
+      <li class="error-item"><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <form action="/users" method="post">
   <legend>Username:</legend>
   <input class="block w-100 mar-t-1 mar-b-1 pad-1" type="text" name="user[username]">
