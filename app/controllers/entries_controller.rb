@@ -42,11 +42,19 @@ end
 
 delete '/entries/:id' do
   @entry = find_and_ensure_entry(params[:id])
-  @entry.destroy
-  redirect '/entries'
+  if session[:username]
+    @entry.destroy
+    redirect '/entries'
+  else
+    redirect "/entries/#{@entry.id}"
+  end
 end
 
 get '/entries/:id/edit' do
-  @entry = find_and_ensure_entry(params[:id])
-  erb :'entries/edit'
+    @entry = find_and_ensure_entry(params[:id])
+  if session[:username]
+    erb :'entries/edit'
+  else
+    redirect "/entries/#{@entry.id}"
+  end
 end
