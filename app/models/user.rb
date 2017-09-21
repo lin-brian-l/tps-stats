@@ -5,12 +5,12 @@ class User < ApplicationRecord
   validates :email, { uniqueness: true }
 
   def password
-    @user_password ||= BCrypt::Password.new(password)
+    @password ||= BCrypt::Password.new(user_password)
   end
 
   def password=(new_password)
-    @user_password = BCrypt::Password.create(new_password)
-    self.password = @user_password
+    @password = BCrypt::Password.create(new_password)
+    self.user_password = @password
   end
 
   def self.authenticate(email, password)
@@ -21,5 +21,4 @@ class User < ApplicationRecord
       nil
     end
   end
-
 end
