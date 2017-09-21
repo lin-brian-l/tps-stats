@@ -28,7 +28,7 @@ get '/entries/new' do
 end
 
 get '/entries/:id' do
-  @user = User.find_by(entry_id: params[:id])
+  @user = User.find(params[:id])
   @entry = find_and_ensure_entry(params[:id])
   erb :'entries/show'
 end
