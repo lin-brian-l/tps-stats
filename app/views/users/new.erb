@@ -1,11 +1,11 @@
 <h1>Create a Bacon Blog Account</h1>
 
-<form action="/users/" method="post">
+<form action="/users" method="post">
   <legend>Username:</legend>
-  <input class="block w-100 mar-t-1 mar-b-1 pad-1" type="text" name="user[:username]">
+  <input class="block w-100 mar-t-1 mar-b-1 pad-1" type="text" name="user[username]">
   <legend>Email:</legend>
-  <input class="block w-100 mar-t-1 mar-b-1 pad-1" type="text" name="user[:email]">
+  <input class="block w-100 mar-t-1 mar-b-1 pad-1" type="text" name="user[email]">
   <legend>Password:</legend>
-  <input class="block w-100 mar-t-1 mar-b-1 pad-1" type="text" name="user[password]">
+  <input class="block w-100 mar-t-1 mar-b-1 pad-1" type="password" name="user[password]">
   <input class="block button w-100 mar-t-2 mar-b-1 pad-1 round-1 text-c center" type="submit" value="Create Account">
 </form>

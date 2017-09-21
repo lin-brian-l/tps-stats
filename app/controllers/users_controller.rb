@@ -5,7 +5,9 @@ end
 
 # create
 post '/users' do
-  redirect # index
+  user = User.new(params[:user])
+  user.save
+  redirect '/'
 end
 
 get '/users/login' do
