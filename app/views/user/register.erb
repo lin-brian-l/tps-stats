@@ -1,0 +1,29 @@
+<p>Create a Bacon Blog Account</p>
+
+<div class="error">
+  <% if @errors %>
+    <% @errors.each do |error| %>
+    <%= error.to_s %><br>
+    <% end %>
+  <% end %>
+</div>
+<br>
+<form action='/register' method="post">
+  <div class='register'>
+    <label for="username">Username:</label><br>
+    <input type="text" name="user[username]">
+  </div>
+  <br>
+  <div class='register'>
+    <label for="email">Email:</label><br>
+    <input type="text" name="user[email]">
+  </div>
+  <br>
+  <div class='register'>
+    <label for="password">Password:</label><br>
+    <input type="password" name="user[encrypted_password]">
+  </div>
+  <br>
+  <input type="submit" value="Create Accoount">
+
+</form>

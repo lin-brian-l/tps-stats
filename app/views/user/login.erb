@@ -1,0 +1,19 @@
+<p>Log In</p>
+<% if @errors %>
+  <%= @errors %>
+<% end %>
+<br>
+<br>
+<form action='/login' method="post">
+  <div class='login'>
+    <label for="username">Username:</label><br>
+    <input type="text" name="username">
+  </div>
+  <br>
+  <div class='login'>
+    <label for="password">Password:</label><br>
+    <input type="password" name="encrypted_password">
+  </div>
+  <br>
+  <input type="submit" value="Login!">
+</form>

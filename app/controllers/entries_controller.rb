@@ -15,11 +15,20 @@ post '/entries' do
   end
 end
 
+get '/error' do
+  erb :'404'
+end
+
+before '/entries/new' do
+  redirect '/error' unless session[:user_id]
+end
+
 get '/entries/new' do
   erb :'entries/new'
 end
 
 get '/entries/:id' do
+  @user = User.find_by(entry_id: params[:id])
   @entry = find_and_ensure_entry(params[:id])
   erb :'entries/show'
 end
@@ -34,6 +43,11 @@ put '/entries/:id' do
     @errors = @entry.errors.full_messages
     erb :'entries/edit'
   end
+end
+
+before '/entries/:id/edit' do
+  user = User.find_by(entry_id: params[:id])
+  redirect '/error' unless session[:user_id] == user.id
 end
 
 delete '/entries/:id' do

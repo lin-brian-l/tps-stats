@@ -14,11 +14,13 @@ gem 'activesupport', '~> 5.0'
 gem 'rake', '~> 12.0.0'
 
 gem 'shotgun'
+gem 'bcrypt', '~> 3.1.7'
 
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
   gem 'rspec', '~> 3.5'
+  gem 'capybara'
   gem 'database_cleaner', '~> 1.4.1'
 end
 
