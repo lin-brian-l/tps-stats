@@ -6,9 +6,14 @@ get '/users/new' do
   erb :new
 end
 
-post '/users' do
-  User.create(username: params[:username], email: params[:email], password: params[:password])
-  redirect '/entries'
+post '/users/new' do
+  @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+  if @user.save
+    redirect '/entries'
+  else
+    @errors = @user.errors.full_messages
+    erb :new
+  end
 end
 
 post '/login' do
