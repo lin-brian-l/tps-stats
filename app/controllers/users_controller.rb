@@ -16,5 +16,5 @@ post '/users' do
 end
 
 get '/users/login' do
-  erb :"users/login"
+  erb :"sessions/new"
 end
