@@ -9,20 +9,27 @@
   <input class="block" id="original-password" type="password" name="user[password]">
   <label for="confirm-password">Confirm Password:</label>
   <input class="block" id="confirm-password" type="password">
-  <input class="block" type="submit" value="Register!">
 
-  <script src="javascript.js">
+  <script type="text/javascript">
+
     var password = document.getElementById("original-password");
     var confirmPassword = document.getElementById("confirm-password")
 
-    function validatePassword(){
+    var validatePassword = function (){
+      console.log("graham was right all along")
       if(password.value != confirmPassword.value) {
         confirmPassword.setCustomValidity("Passwords don't match");
-        else {
-          confirmPassword.setCustomValidity("");
-        }
+      } else {
+        confirmPassword.setCustomValidity("");
       }
-    }
+    };
+
+    password.onchange = validatePassword;
+    confirmPassword.onchange = validatePassword;
+      console.log(password)
+
   </script>
+  <input class="block" type="submit" value="Register!">
+
 
 </form>
