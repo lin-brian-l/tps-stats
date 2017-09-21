@@ -24,17 +24,3 @@ content_for_entries = [
 ]
 
 Entry.create!(content_for_entries)
-
-people_for_users = [
-  {username: "mk7run",
-    email: "mk7run@gmail.com",
-    user_password: "climbing!"},
-  {username: "kel",
-    email: "kel@gmail.com",
-    user_password: "kel"},
-  {username: "vikky",
-    email: "vikky@test.com",
-    user_password: "dance"}
-]
-
-User.create!(people_for_users)
