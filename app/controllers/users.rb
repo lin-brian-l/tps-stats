@@ -28,6 +28,5 @@ end
 
 get '/users/logout' do
   session.delete(:username)
-  session.delete(:user_id)
   redirect '/entries'
 end

@@ -16,7 +16,11 @@ post '/entries' do
 end
 
 get '/entries/new' do
-  erb :'entries/new'
+  if session[:username]
+    erb :'entries/new'
+  else
+    redirect '/entries'
+  end
 end
 
 get '/entries/:id' do
