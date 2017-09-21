@@ -1,7 +1,11 @@
 class User < ApplicationRecord
   has_many :entries
-  validates :username, uniqueness: true
-  validates :email, uniqueness: true
+  validates :username, :email, uniqueness: true
+  validates :email, :username, presence: true
+  validates :encrypted_password, presence: true, length: {minimum: 6}
+
+
+
 
   def password
     @password ||= BCrypt::Password.new(encrypted_password)

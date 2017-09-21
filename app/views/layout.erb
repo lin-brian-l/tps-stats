@@ -15,8 +15,8 @@
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
           <% if !logged_in? %>
-            <li class="pipe-separate t-light-green left"><a href="/register">register</a></li>
-          <li class="pipe-separate t-light-green left"><a href="/login">login</a></li>
+            <li class="pipe-separate t-light-green left"><a href="/user/new">register</a></li>
+          <li class="pipe-separate t-light-green left"><a href="/session">login</a></li>
           <% end %>
           <% if logged_in? %>
           <li class="pipe-separate t-light-green left"><a href="/logout">logout</a></li>

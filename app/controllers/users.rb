@@ -1,8 +1,8 @@
-get '/register' do
+get '/user/new' do
   erb :'user/register'
 end
-# users/new
-post '/register' do
+
+post '/user/new' do
   user = User.new(params[:user])
   if user.save
     user.password = user[:encrypted_password]
@@ -14,11 +14,6 @@ post '/register' do
   end
 end
 
-# session
-get '/login' do
-  erb :'user/login'
-end
-
 get '/users/:id/entries' do
   @user = User.find_by(id: params[:id])
   if @user.nil?
@@ -28,21 +23,4 @@ get '/users/:id/entries' do
     @entry = Entry.where(:user_id => params[:id])
     erb :'user/entries'
   end
-end
-
-post '/login' do
-  user = User.find_by(username: params[:username])
-  if user && user.authenticate(params[:encrypted_password])
-    session[:user_id] = user.id
-    redirect '/'
-  else
-    @errors = "Your username and/or password is incorrect!"
-    erb :'user/login'
-  end
-end
-
-get '/logout' do
-  session.delete(:user_id)
-
-  redirect '/login'
 end
