@@ -1,6 +1,14 @@
 <h1>Please register a new account below</h1>
 
-<form action="/users" method="post">
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/register" method="post">
   <label for="username">Username:</label>
   <input class="block" type="text" placeholder="username" name="user[username]">
   <label for="email">Email:</label>
