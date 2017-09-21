@@ -24,3 +24,9 @@ content_for_entries = [
 ]
 
 Entry.create!(content_for_entries)
+10.times do
+  person = {:username => Faker::Name.first_name, :email => Faker::Internet.email, :password => Faker::Book.title}
+
+  new_user = User.create(person)
+end
+
