@@ -35,6 +35,23 @@ input[type=text], input[type=password], textarea {
   color: #05724f;
 }
 
+#logout-button, #delete-button {
+  display: inline;
+  background:none;
+  color: #6ec7a5;
+  border: none;
+  padding: 0;
+  font: inherit;
+}
+
+#logout-button:focus, #delete-button:focus {
+  outline: none;
+}
+
+#logout-button:hover, #delete-button:hover{
+  color: #3974ff;
+}
+
 
 /* positioning */
 .block {
