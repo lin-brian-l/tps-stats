@@ -19,7 +19,6 @@ group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
   gem 'rspec', '~> 3.5'
-  gem 'capybara'
   gem 'database_cleaner', '~> 1.4.1'
 end
 
