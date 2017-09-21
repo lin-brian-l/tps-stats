@@ -14,9 +14,15 @@ end
 post '/login' do
   user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
-    session[:user_id] = user.id
+    session[:username] = user.username
     redirect '/entries'
   else
     erb :login
   end
+end
+
+get '/users/logout' do
+  session.delete(:username)
+  session.delete(:user_id)
+  redirect '/entries'
 end
