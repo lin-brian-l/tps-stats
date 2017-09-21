@@ -1,0 +1,14 @@
+<div class="container">
+  <% if @errors %>
+  <center><li> Sorry, wrong username or password. Please try again! :( </li></center>
+  <% end %>
+
+  <form action="/sessions/new" method="post">
+    <center><h1>Login</h1>
+    <label for= "username">Username:</label><br>
+      <input type="text" name="username"><br>
+    <label for= "password">Password:</label><br>
+      <input type="password" name="password"><br><br>
+    <input type="submit" value="Login"></center>
+  </form>
+</div>
