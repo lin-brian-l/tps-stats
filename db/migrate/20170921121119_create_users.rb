@@ -6,5 +6,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :password_hash, presence: true
 
       t.timestamps
+    end
   end
 end

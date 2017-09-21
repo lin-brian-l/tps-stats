@@ -1,4 +1,6 @@
 # Blog entry content courtesy of veggieipsum.com.
+require 'faker'
+
 
 content_for_entries = [
   { :title => "Salsify Taro Catsear Garlic",
@@ -24,3 +26,8 @@ content_for_entries = [
 ]
 
 Entry.create!(content_for_entries)
+
+5.times do
+  user = User.new(username: Faker::Internet.user_name, email: Faker::Internet.safe_email, password: Faker::Hipster.word)
+  user.save
+end
