@@ -1,0 +1,28 @@
+<h1>Please register a new account below</h1>
+
+<form action="/users" method="post">
+  <label for="username">Username:</label>
+  <input class="block" type="text" placeholder="username" name="user[username]">
+  <label for="email">Email:</label>
+  <input class="block" type="email" placeholder="email" name="user[email]">
+  <label for="password">Password:</label>
+  <input class="block" id="original-password" type="password" name="user[password]">
+  <label for="confirm-password">Confirm Password:</label>
+  <input class="block" id="confirm-password" type="password">
+  <input class="block" type="submit" value="Register!">
+
+  <script src="javascript.js">
+    var password = document.getElementById("original-password");
+    var confirmPassword = document.getElementById("confirm-password")
+
+    function validatePassword(){
+      if(password.value != confirmPassword.value) {
+        confirmPassword.setCustomValidity("Passwords don't match");
+        else {
+          confirmPassword.setCustomValidity("");
+        }
+      }
+    }
+  </script>
+
+</form>
