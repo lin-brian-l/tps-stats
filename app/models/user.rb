@@ -6,7 +6,7 @@ class User < ApplicationRecord
   validates :password, { presence: true }
 
   def encrypted_password
-    @password_encrypt ||= BCrypt::Password.new(encrypted_password)
+    @password_encrypt ||= BCrypt::Password.new(password)
   end
 
   def encrypted_password=(new_password)
