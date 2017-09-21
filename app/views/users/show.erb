@@ -1,0 +1,7 @@
+<h1>all entries for <%= @user.username %></h1>
+
+<ul>
+  <% @entries.each do |entry| %>
+    <li><%= entry %></li>
+  <% end %>
+</ul>

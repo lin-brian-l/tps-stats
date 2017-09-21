@@ -14,6 +14,11 @@
     <div class="max-w-700 center wrap-float">
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
+          <% if current_user %>
+            <%= erb :'partials/_logged_in_links' %>
+          <% else %>
+            <%= erb :'partials/_logged_out_links' %>
+          <% end %>
           <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
         </ul>
       </nav>

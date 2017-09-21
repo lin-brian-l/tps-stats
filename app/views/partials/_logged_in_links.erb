@@ -1,0 +1,8 @@
+<li class="pipe-separate t-light-green left">hello, <%= current_user.username %></li>
+
+<li class="pipe-separate t-light-green left">
+  <form class="logout" action="/sessions" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="logout">
+  </form>
+</li>

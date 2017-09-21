@@ -1,0 +1,21 @@
+<h1>Register</h1>
+
+<%= erb :'partials/_errors', layout: false %>
+
+<form action="/users" method="post">
+  <div>
+    <label for="username">Username: </label>
+    <input type="text" name="user[username]">
+  </div>
+  <div>
+    <label for="email">Email: </label>
+    <input type="email" name="user[email]">
+  </div>
+  <div>
+    <label for="password">Password: </label>
+    <input type="password" name="user[password]">
+  </div>
+  <div>
+    <input type="submit" value="Create">
+  </div>
+</form>
