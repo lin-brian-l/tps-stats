@@ -15,14 +15,11 @@
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
           <li class="pipe-separate t-light-green left">
-      <% if current_user %>
-        <%= current_user.username %> | <a href="/logout">logout</a> | <a href="/">
-            home</a>
+            <% if current_user %>
+              <%= current_user.username %> | <a href="/logout">logout</a> | <a href="/">home</a>
             <% else %>
-            <a href="/">
-            home</a>  |
-          <a href="/login">login</a>  |  <a href="/register">register</a>
-          <% end %>
+                  <a href="/">home</a>  |  <a href="/login">login</a>  |  <a href="/register">register</a>
+            <% end %>
           </li>
         </ul>
       </nav>
