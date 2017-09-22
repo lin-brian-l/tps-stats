@@ -5,7 +5,7 @@ end
 post '/users/new' do
   p params
   @user = User.create(params[:register])
-  redirect '/entries'
+  redirect 'users/login'
 end
 
 get '/users/login' do
@@ -14,7 +14,13 @@ end
 
 post '/login' do
   @user = User.authenticate(params[:username], params[:password])
-  if @user
-    redirect '/entries'
-  end
+  # if @user
+    redirect "/users/#{@user.id}"
+  # end
+end
+
+get '/users/:id' do
+  p params
+  @user = User.find(params[:id])
+  erb :'users/show'
 end
