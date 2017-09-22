@@ -4,7 +4,13 @@ end
 
 post '/users' do
   @user = User.new(params[:user])
-  @user.password = params[:password]
-  @user.save!
-  redirect '/sessions/new'
+  if @user.save
+    @user.password = params[:encrypted_password]
+    @user.save!
+    redirect '/sessions/new'
+  else
+    @errors = @user.errors.full_messages
+    erb :'/users/new'
+  end
 end
+

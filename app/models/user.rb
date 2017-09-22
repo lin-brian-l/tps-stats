@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  validates :email, :username, :encrypted_password, { presence: false }
+  validates :email, :username, :encrypted_password, { presence: true }
   validates :username, :email, { uniqueness: true }
 
   def password
