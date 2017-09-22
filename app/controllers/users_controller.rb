@@ -3,9 +3,13 @@ get '/users/new' do
 end
 
 post '/users/new' do
-  p params
   @user = User.create(params[:register])
-  redirect 'users/login'
+  if @user
+    redirect 'users/login'
+  else
+    @errors = "status"
+    erb '/users/new'
+  end
 end
 
 get '/users/login' do
@@ -15,18 +19,17 @@ end
 post '/login' do
   @user = User.authenticate(params[:username], params[:password])
   if @user
-    session[:user_id] = @user.id
     session[:username] = @user.username
-    redirect "/users/#{@user.id}"
+    redirect "/users/#{@user.username}"
   else
     @errors = "status"
     erb :'/users/login'
   end
 end
 
-get '/users/:id' do
-  if session[:user_id] == params[:id].to_i
-    @user = User.find(params[:id])
+get '/users/:username' do
+  if session[:username] == params[:username]
+    @user = User.find_by(username: params[:username])
     erb :'users/show'
   else
     redirect '/users/login'
@@ -34,7 +37,6 @@ get '/users/:id' do
 end
 
 get '/logout' do
-  session[:user_id] = nil
   session[:username] = nil
   redirect '/entries'
 end

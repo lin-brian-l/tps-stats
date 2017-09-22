@@ -1,6 +1,10 @@
 <center><header class="entry-title font-2 pad-b-1-4 c-white">Create a Broccoli Blog Account</header></center>
 <br>
 
+<% if @errors %>
+  <center>Sorry broccoli bitch!</center><br>
+<% end %>
+
 <form method="post" action="/users/new">
   <label for="username" class="block mar-b-1">Username</label>
   <input id="username" name="register[username]" type="text" tabindex="1" class="block w-100 no-outline no-border pad-1 mar-b-2">
