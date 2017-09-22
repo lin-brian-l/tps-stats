@@ -1,9 +1,9 @@
 <h1><%= @entry.title %></h1>
 
 <span class="entry-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@entry.created_at)}." %></span>
-
+<h2>Written by: <%= @entry.author.user_name %></h2>
 <p><%= @entry.body %></p>
-
+<% if session[:id] == @entry.author.id %>
 <ul class="no-bullets no-padding mar-t-2">
   <li class="pipe-separate left">
     <a href="/entries/<%= @entry.id %>/edit" class="c-white">edit</a>
@@ -15,4 +15,5 @@
       <input type="submit" value="delete" class="no-border no-outline no-bg c-white hover-underline">
     </form>
   </li>
+  <% end %>
 </ul>

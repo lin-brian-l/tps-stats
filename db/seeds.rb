@@ -1,4 +1,5 @@
 # Blog entry content courtesy of veggieipsum.com.
+Entry.delete_all
 
 content_for_entries = [
   { :title => "Salsify Taro Catsear Garlic",
@@ -24,3 +25,5 @@ content_for_entries = [
 ]
 
 Entry.create!(content_for_entries)
+
+User.create(username: "mrwonderful", email: "money@money.money", password: "green")
