@@ -17,9 +17,3 @@ end
 
 # get '/users' do
 #   redirect '/login' unless session[:user_id]
-
-#   session[:user_views] = 0 unless session[:user_views]
-#   session[:user_views] += 1
-
-#   erb :"users/index"
-# end
