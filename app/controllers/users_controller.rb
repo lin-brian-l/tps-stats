@@ -7,18 +7,19 @@ post '/register' do
 
   if @user.valid?
     @user.save
-    redirect "/users"
+    session[:user_id] = @user.id
+    redirect '/entries'
   else
     @errors = @user.errors.full_messages
     erb :"users/register"
   end
 end
 
-get '/users' do
-  redirect '/login' unless session[:user_id]
+# get '/users' do
+#   redirect '/login' unless session[:user_id]
 
-  session[:user_views] = 0 unless session[:user_views]
-  session[:user_views] += 1
+#   session[:user_views] = 0 unless session[:user_views]
+#   session[:user_views] += 1
 
-  erb :"users/index"
-end
+#   erb :"users/index"
+# end

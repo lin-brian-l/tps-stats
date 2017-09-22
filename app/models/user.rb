@@ -9,6 +9,7 @@ class User < ApplicationRecord
   end
 
   def password=(new_password)
+    return if new_password.empty?
     @password = BCrypt::Password.create(new_password)
     self.user_password = @password
   end

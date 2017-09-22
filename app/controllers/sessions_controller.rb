@@ -11,7 +11,7 @@ post '/login' do
 
   if user
     session[:user_id] = user.id
-    redirect '/users'
+    redirect '/entries'
   else
     erb :"users/login"
   end
