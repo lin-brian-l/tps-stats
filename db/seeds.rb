@@ -25,4 +25,7 @@ content_for_entries = [
 
 Entry.create!(content_for_entries)
 
+user1 = User.create(username: "brian", email: "brian@gmail.com", encrypted_password: "brian")
+user2 = User.create(username: "andrea", email: "andrea@gmail.com", encrypted_password: "andrea")
 
+user1.entries = Entry.all
