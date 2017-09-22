@@ -15,4 +15,13 @@ class User < ApplicationRecord
     @password = Password.create(new_password)
     self.encrypted_password = @password
   end
+
+  def self.authenticate(username, password)
+    User.all.each do |user|
+      if user.username == username && user.password == password
+        return user
+      end
+    end
+    nil
+  end
 end
