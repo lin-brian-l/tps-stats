@@ -74,6 +74,24 @@ input[type=text], input[type=password], input[type=email], input[type=submit], t
   text-decoration: none;
 }
 
+.no-style-button {
+  background: none;
+}
+
+.no-style-button input {
+  background: none;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: #32bb7d;
+  text-decoration: none;
+}
+
+.no-style-button input:hover {
+  color: #6ec7a5;
+  text-decoration: underline;
+}
+
   .button:hover {
     color: white;
     text-decoration: none;
@@ -254,6 +272,9 @@ input[type=text], input[type=password], input[type=email], input[type=submit], t
 
 .t-light-green {
   color: #32bb7d;
+  font-size: 0.9em;
+  font-weight: lighter;
+
 }
 
 .text-c {

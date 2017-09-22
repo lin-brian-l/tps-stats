@@ -1,0 +1,9 @@
+<%= erb :'_errors', locals: { errors: @errors } %>
+
+<form action='/login' method='post'>
+  <label for='username'>Username:</label>
+  <input class='block' type='text' name='username'>
+  <label for='password'>Password:</label>
+  <input class='block' type='password' name='password'>
+  <input type='submit' value='Log in'>
+</form>

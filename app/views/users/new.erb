@@ -1,12 +1,6 @@
 <h1>Please register a new account below</h1>
 
-<% if @errors %>
-  <ul>
-    <% @errors.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-  </ul>
-<% end %>
+<%= erb :'_errors', locals: { errors: @errors } %>
 
 <form action="/register" method="post">
   <label for="username">Username:</label>
@@ -23,7 +17,7 @@
     var password = document.getElementById("original-password");
     var confirmPassword = document.getElementById("confirm-password")
 
-    var validatePassword = function (){
+    var validatePassword = function(){
       console.log("graham was right all along")
       if(password.value != confirmPassword.value) {
         confirmPassword.setCustomValidity("Passwords don't match");
@@ -31,10 +25,18 @@
         confirmPassword.setCustomValidity("");
       }
     };
+    var ensurePasswordLength = function(){
+      if(password.value.length < 8) {
+        password.setCustomValidity("Password cannot be fewer than 8 characters");
+      } else {
+        password.setCustomValidity("");
+      }
+    };
 
-    password.onchange = validatePassword;
+    password.onchange = validatePassword, ensurePasswordLength;
     confirmPassword.onchange = validatePassword;
       console.log(password)
+
 
   </script>
   <input class="block" type="submit" value="Register!">

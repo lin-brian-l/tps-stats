@@ -1,6 +1,7 @@
 # route handlers dealing with the collection
 get '/entries' do
   @entries = Entry.most_recent
+
   erb :'entries/index'
 end
 
