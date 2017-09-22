@@ -23,10 +23,13 @@ content_for_entries = [
     :body  => "Water spinach arugula pea tatsoi aubergine spring onion bush tomato kale radicchio turnip chicory salsify pea sprouts fava bean. Dandelion zucchini burdock yarrow chickpea dandelion sorrel courgette turnip greens tigernut soybean radish artichoke wattle seed endive groundnut broccoli arugula."}
 ]
 
-Entry.create!(content_for_entries)
+Entry.create!(content_for_entries) if Entry.count < 10
 
 entries = Entry.all
 if User.count > 0
   users = User.all
-  entries.each {|entry| entry.user = users.sample}
+  entries.each do |entry|
+    entry.user_id = (1..3).to_a.sample
+    entry.save
+  end
 end

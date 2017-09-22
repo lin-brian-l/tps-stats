@@ -34,3 +34,10 @@ get '/users/logout' do
   session.delete(:user_id)
   redirect '/users/login'
 end
+
+get '/users/:id/entries' do
+  @author = find_and_ensure_user(params[:id])
+  @entries = Entry.where(user_id: params[:id])
+  erb :'users/show_entries'
+end
+

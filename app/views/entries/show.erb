@@ -2,7 +2,7 @@
 
 <span class="entry-date block font-3-4 c-lt-gray">
   <%= "Written on #{long_form_date(@entry.created_at)}." %>
-  by <%= @entry.user.username %>
+  by <a href="/users/<%=@entry.user.id%>/entries"><%= @entry.user.username %></a>
 </span>
 
 <p><%= @entry.body %></p>
