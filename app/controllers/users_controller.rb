@@ -16,8 +16,9 @@ get '/users/login' do
   erb :'/users/login'
 end
 
-get '/users/:id' do
-  erb :'/users/show'
+get '/users/logout' do
+  session.delete(:user_id)
+  redirect '/users/login'
 end
 
 post '/users/login' do
@@ -35,3 +36,15 @@ post '/users/login' do
     erb :'users/login'
   end
 end
+
+get '/users/:id' do
+  @user = User.find(params[:id])
+  erb :'/users/show'
+end
+
+
+
+
+
+
+

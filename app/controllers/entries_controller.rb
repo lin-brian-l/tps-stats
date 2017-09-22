@@ -8,6 +8,8 @@ post '/entries' do
   @entry = Entry.new(params[:entry])
 
   if @entry.save
+    @user = User.find(session[:user_id])
+    @user.entries << @entry
     redirect "/entries/#{@entry.id}"
   else
     @errors = @entry.errors.full_messages
@@ -34,6 +36,11 @@ put '/entries/:id' do
     @errors = @entry.errors.full_messages
     erb :'entries/edit'
   end
+
+end
+
+before '/entries/:id/edit' do
+  halt(404, erb(:'404')) if !session[:user_id] || session[:user_id] != Entry.find(params[:id]).user.id
 end
 
 delete '/entries/:id' do

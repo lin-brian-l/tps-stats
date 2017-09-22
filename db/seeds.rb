@@ -24,3 +24,5 @@ content_for_entries = [
 ]
 
 Entry.create!(content_for_entries)
+
+
