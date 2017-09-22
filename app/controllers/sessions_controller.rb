@@ -18,7 +18,7 @@ post '/login' do
   end
 end
 
-delete '/sessions' do
+delete '/sessions/:id' do
   session[:user_id] = nil
   redirect '/'
 end
