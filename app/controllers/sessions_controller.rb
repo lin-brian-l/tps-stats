@@ -7,5 +7,18 @@ get '/login' do
 end
 
 post '/login' do
-  @user = User.find_by()
+  @user = User.authenticate(params[:username], params[:password])
+  if @user
+    session[:user_id] = @user.id
+    redirect #inside
+  else
+    status 401
+    @errors = ["Login email or password error"]
+    erb :'sessions/new'
+  end
+end
+
+delete '/sessions' do
+  session[:user_id] = nil
+  redirect '/'
 end
