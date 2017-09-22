@@ -14,10 +14,10 @@
   <input id="username" name="user[username]" type="text" value="<%= @user.try(:username) %>" tabindex="1" class="block w-100 no-outline no-border pad-1 mar-b-2">
 
   <label for="password" class="block mar-b-1">Password:</label>
-  <input id="password" name="user[password]" type="password" class="block w-100 no-outline no-border pad-1 mar-b-2"></text>
+  <input id="password" name="user[password]" type="password" tabindex="2" class="block w-100 no-outline no-border pad-1 mar-b-2"></text>
 
   <label for="email" class="block mar-b-1">Email:</label>
-  <input id="email" name="user[email]" type="text" value="<%= @user.try(:email) %>" tabindex="1" class="block w-100 no-outline no-border pad-1 mar-b-2">
+  <input id="email" name="user[email]" type="text" value="<%= @user.try(:email) %>" tabindex="1" tabindex="3" class="block w-100 no-outline no-border pad-1 mar-b-2">
 
-  <input type="submit" value="register" class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">
+  <input type="submit" value="register" tabindex="4" class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">
 </form>

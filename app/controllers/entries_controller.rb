@@ -5,6 +5,7 @@ get '/entries' do
 end
 
 post '/entries' do
+  halt(404, erb(:'404')) if session[:user_id].nil?
   @entry = Entry.new(params[:entry])
 
   if @entry.save
@@ -16,6 +17,7 @@ post '/entries' do
 end
 
 get '/entries/new' do
+  halt(404, erb(:'404')) if session[:user_id].nil?
   erb :'entries/new'
 end
 
@@ -26,6 +28,7 @@ end
 
 put '/entries/:id' do
   @entry = find_and_ensure_entry(params[:id])
+  find_and_authenticate_user(@entry)
   @entry.assign_attributes(params[:entry])
 
   if @entry.save
@@ -38,11 +41,13 @@ end
 
 delete '/entries/:id' do
   @entry = find_and_ensure_entry(params[:id])
+  find_and_authenticate_user(@entry)
   @entry.destroy
   redirect '/entries'
 end
 
 get '/entries/:id/edit' do
   @entry = find_and_ensure_entry(params[:id])
+  find_and_authenticate_user(@entry)
   erb :'entries/edit'
 end

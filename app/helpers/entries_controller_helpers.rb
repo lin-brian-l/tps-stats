@@ -6,4 +6,18 @@ module EntryControllerHelper
   end
 end
 
+def find_and_authenticate_user(entry)
+  @entry = entry
+  halt(404, erb(:'404')) if session[:user_id].nil? || @entry.user.nil? || @entry.user.id != session[:user_id]
+end
+
+def authenticate_id(id)
+  @entry = Entry.find_by(id: id)
+  if session[:user_id].nil? || @entry.user.nil? || @entry.user.id != session[:user_id]
+    false
+  else
+    @entry.user.username
+  end
+end
+
 helpers EntryControllerHelper

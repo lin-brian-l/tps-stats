@@ -19,7 +19,6 @@ get '/users/login' do
 end
 
 post '/users/login' do
-
   if User.authenticate(params[:user][:username], params[:user][:password])
     @user = User.find_by(username: params[:user][:username])
     session[:user_id] = @user.id

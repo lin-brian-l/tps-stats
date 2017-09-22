@@ -24,3 +24,9 @@ content_for_entries = [
 ]
 
 Entry.create!(content_for_entries)
+
+entries = Entry.all
+if User.count > 0
+  users = User.all
+  entries.each {|entry| entry.user = users.sample}
+end
