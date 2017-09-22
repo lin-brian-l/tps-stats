@@ -15,11 +15,12 @@
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
           <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+          <!-- ASK SOMEONE TO LOOK AT THIS WEIRD TRIPPLE NEGATIVE -->
           <% if logged_in? %>
-            <li class="pipe-separate t-light-green left"><form action="/logout" method="get">
+            <li class="pipe-separate t-light-green left logout"><form action="/logout" method="get">
             <input type="submit" value="logout"></form></li>
-          <% else %>
-            <li class="pipe-separate t-light-green left"><form action="/login" method="get">
+          <% elsif !logged_in? %>
+            <li class="pipe-separate t-light-green left login"><form action="/login" method="get">
             <input type="submit" value="login"></form></li>
           <% end %>
         </ul>

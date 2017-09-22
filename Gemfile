@@ -16,6 +16,7 @@ gem 'rake', '~> 12.0.0'
 gem 'shotgun'
 
 gem 'bcrypt'
+gem 'extra_print'
 
 group :test do
   gem 'shoulda-matchers'

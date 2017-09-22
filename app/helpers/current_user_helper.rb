@@ -4,7 +4,6 @@ helpers do
   end
 
   def logged_in?
-    # google !!
     !!@current_user
   end
 

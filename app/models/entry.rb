@@ -1,5 +1,5 @@
 class Entry < ApplicationRecord
-  belongs_to :user
+  belongs_to :author, class_name: "User"
   validates :title, :body, { presence: true }
 
   def self.most_recent

@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :entries, foreign_key: :author_id
+  has_many :entries, foreign_key: :author_id, class_name: "Entry"
   validates :username, :email, :encrypted_password, { presence: true }
   validates :username, uniqueness: true
   def password

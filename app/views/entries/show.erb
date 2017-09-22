@@ -1,12 +1,12 @@
 <h1><%= @entry.title %></h1>
 
-<span class="entry-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@entry.created_at)}." %></span>
+<span class="entry-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@entry.created_at)}." %><%= "Submitted by #{@entry.author.username}." %></span>
 
 <p><%= @entry.body %></p>
 
 <ul class="no-bullets no-padding mar-t-2">
-<% if @current_user.id == @entry.author_id %>
-<% p "this worked" %>
+  <!-- ASK WHY THIS IS BEING STUPID -->
+<% if logged_in? && @current_user.id == @entry.author.id %>
   <li class="pipe-separate left">
     <a href="/entries/<%= @entry.id %>/edit" class="c-white">edit</a>
   </li>
