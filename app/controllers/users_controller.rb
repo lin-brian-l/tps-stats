@@ -10,7 +10,7 @@ get '/users/new' do
 end
 
 post '/users' do
-  @user = User.new(params[:users])
+  @user = User.create(params[:users])
   redirect '/users'
 end
 
@@ -19,17 +19,32 @@ get '/users/login' do
 end
 
 post '/users/login' do
-  ##authenticate info goes here!
+  @user = User.authenticate(params[:username], params[:password])
+  if @user
+    session[:user_id] = @user.id
+    redirect '/entries'
+  else
+    redirect '/users'
+  end
+
 end
 
+##ensure only logged in users can access restricted page
+get '/entries' do
+  if session[:user_id] == nil
+    redirect '/users/login'
+  else
+    erb :entries
+ end
+end
 
 get '/session-viewer' do
   session.inspect
 end
 
-##TODO, finalize and test registration
-##TODO, SETUP login route and form
-##TODO, authenticate users
-##TODO, begin restricting access
 
+
+
+##TODO, begin restricting access
+##SETUP FEEDBACK loop if errors occur on login page
 

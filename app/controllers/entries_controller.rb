@@ -46,3 +46,9 @@ get '/entries/:id/edit' do
   @entry = find_and_ensure_entry(params[:id])
   erb :'entries/edit'
 end
+
+
+get '/logout' do
+  session.delete(:user_id)
+  redirect '/users/login'
+end
