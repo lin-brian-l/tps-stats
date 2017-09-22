@@ -14,13 +14,15 @@ end
 
 post '/login' do
   @user = User.authenticate(params[:username], params[:password])
-  # if @user
+  if @user
     redirect "/users/#{@user.id}"
-  # end
+  else
+    @errors = "status"
+    erb :'/users/login'
+  end
 end
 
 get '/users/:id' do
-  p params
   @user = User.find(params[:id])
   erb :'users/show'
 end
