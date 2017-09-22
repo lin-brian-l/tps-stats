@@ -14,9 +14,17 @@
     <div class="max-w-700 center wrap-float">
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
-          <li class="pipe-separate t-light-green left"><a href="/users/new">register</a></li>
-          <li class="pipe-separate t-light-green left"><a href="/users/login">login</a></li>
-          <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+          <% if !session[:user_id] %>
+            <li class="pipe-separate t-light-green left"><a href="/users/new">register</a></li>
+            <li class="pipe-separate t-light-green left"><a href="/users/login">login</a></li>
+            <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+          <% end %>
+
+          <% if session[:user_id] %>
+            <li class="pipe-separate t-light-green left"><a href="/users/<%= session[:user_id] %>"> <%= session[:username] %> </a></li>
+            <li class="pipe-separate t-light-green left"><a href="/logout">logout</a></li>
+            <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+          <% end %>
         </ul>
       </nav>
 

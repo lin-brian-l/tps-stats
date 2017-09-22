@@ -15,6 +15,8 @@ end
 post '/login' do
   @user = User.authenticate(params[:username], params[:password])
   if @user
+    session[:user_id] = @user.id
+    session[:username] = @user.username
     redirect "/users/#{@user.id}"
   else
     @errors = "status"
@@ -23,6 +25,16 @@ post '/login' do
 end
 
 get '/users/:id' do
-  @user = User.find(params[:id])
-  erb :'users/show'
+  if session[:user_id] == params[:id].to_i
+    @user = User.find(params[:id])
+    erb :'users/show'
+  else
+    redirect '/users/login'
+  end
+end
+
+get '/logout' do
+  session[:user_id] = nil
+  session[:username] = nil
+  redirect '/entries'
 end
