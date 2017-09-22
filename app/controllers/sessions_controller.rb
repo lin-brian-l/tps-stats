@@ -10,7 +10,7 @@ post '/login' do
   @user = User.authenticate(params[:username], params[:password])
   if @user
     session[:user_id] = @user.id
-    redirect #inside
+    redirect '/'
   else
     status 401
     @errors = ["Login email or password error"]
