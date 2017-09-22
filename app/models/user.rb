@@ -1,6 +1,8 @@
 require 'bcrypt'
 
 class User < ApplicationRecord
+  has_many :entries, :foreign_key => "author_id", :class_name => "Entry", :dependent => :destroy
+
   validates :username, :user_password, { presence: true }
   validates :username, :email, { uniqueness: true }
 

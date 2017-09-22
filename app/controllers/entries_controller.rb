@@ -28,6 +28,7 @@ end
 
 get '/entries/:id' do
   @entry = find_and_ensure_entry(params[:id])
+  @author = User.find_by(id: @entry.author_id)
   erb :'entries/show'
 end
 

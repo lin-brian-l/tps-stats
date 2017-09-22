@@ -1,10 +1,10 @@
 <h1><%= @entry.title %></h1>
 
 <span class="entry-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@entry.created_at)}." %></span>
-
+<p>Posted by: <%= @author.username %></p>
 <p><%= @entry.body %></p>
 
-<% if current_user %>
+<% if current_user == @author %>
   <ul class="no-bullets no-padding mar-t-2">
     <li class="pipe-separate left">
       <a href="/entries/<%= @entry.id %>/edit" class="c-white">edit</a>
