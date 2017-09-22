@@ -5,13 +5,17 @@ get '/entries' do
 end
 
 post '/entries' do
-  @entry = Entry.new(params[:entry])
-
-  if @entry.save
-    redirect "/entries/#{@entry.id}"
+  if logged_in?
+    @entry = Entry.new(params[:entry])
+    if @entry.save
+      redirect "/entries/#{@entry.id}"
+    else
+      @errors = @entry.errors.full_messages
+      erb :'entries/new'
+    end
   else
-    @errors = @entry.errors.full_messages
-    erb :'entries/new'
+    @errors = "Must be logged in to make a new entry!"
+    erb :'users/login'
   end
 end
 
@@ -44,5 +48,7 @@ end
 
 get '/entries/:id/edit' do
   @entry = find_and_ensure_entry(params[:id])
-  erb :'entries/edit'
+  if @current_user == @entry.id
+    erb :'entries/edit'
+  end
 end
