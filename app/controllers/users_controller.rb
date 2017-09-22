@@ -15,5 +15,9 @@ post '/register' do
   end
 end
 
-# get '/users' do
-#   redirect '/login' unless session[:user_id]
+get '/users/:id/entries' do
+  # @author = User.find(params[:id])
+  # @entry = Entry.find_by(@author.id)
+
+  erb :"users/user_entries"
+end
