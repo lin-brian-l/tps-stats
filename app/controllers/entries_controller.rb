@@ -46,12 +46,21 @@ end
 
 delete '/entries/:id' do
   @entry = find_and_ensure_entry(params[:id])
-  @entry.destroy
-  redirect '/entries'
+  @author = User.find_by(id: @entry.author_id)
+
+  if current_user == @author
+    @entry = find_and_ensure_entry(params[:id])
+    @entry.destroy
+    redirect '/entries'
+  else
+    erb :'404'
+  end
 end
 
 get '/entries/:id/edit' do
-  if current_user
+  @entry = Entry.find(params[:id])
+  @author = User.find_by(id: @entry.author_id)
+  if current_user == @author
     @entry = find_and_ensure_entry(params[:id])
     erb :'entries/edit'
   else
