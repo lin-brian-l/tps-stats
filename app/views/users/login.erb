@@ -1,13 +1,26 @@
 <h1>Log in to your account</h1><br>
+
+<% if @errors %>
+  <span>Something went wrong:</span>
+  <ul class="error-list pad-b-2">
+    <% @errors.each do |error| %>
+      <li class="error-item"><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <form action="/login" method="post" >
-  <span>
-  <label for="email">Email address:</label>
-  <input type="text" name="email" />
-  </span>
-  <br>
-  <span>
-    <label for="password">Password:</label>  <input type="password" name="password" />
-  </span>
-  <br>
-  <input type="submit" value="Login">
+  <p>
+    <span>
+      <label for="email">Email address:</label>
+      <input type="text" name="email" />
+    </span>
+  </p>
+  <p>
+    <span>
+      <label for="password">Password:</label>  <input type="password" name="password" />
+    </span>
+  </p>
+  <p><input type="submit" value="Login">
+  </p>
 </form>

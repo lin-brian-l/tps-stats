@@ -1,4 +1,13 @@
-<h1>Register below to log in:</h1><br>
+<h1>Register to log in</h1><br>
+
+<% if @errors %>
+  <span>Something went wrong:</span>
+  <ul class="error-list pad-b-2">
+    <% @errors.each do |error| %>
+      <li class="error-item"><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <form action="/register" method="post" >
   <p><label for="username">Username:</label>

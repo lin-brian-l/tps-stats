@@ -3,20 +3,22 @@ get '/register' do
 end
 
 post '/register' do
-  @user = User.create(params[:user])
-  redirect '/entries'
-end
+  @user = User.new(params[:user])
 
-get '/login' do
-  erb :"users/login"
-end
-
-post '/login' do
-  user = User.authenticate(params[:email], params[:password])
-  if user
-    session[:user_id] = user.id
-    redirect '/entries'
+  if @user.valid?
+    @user.save
+    redirect "/users"
   else
-    erb :"users/login"
+    @errors = @user.errors.full_messages
+    erb :"users/register"
   end
+end
+
+get '/users' do
+  redirect '/login' unless session[:user_id]
+
+  session[:user_views] = 0 unless session[:user_views]
+  session[:user_views] += 1
+
+  erb :"users/index"
 end

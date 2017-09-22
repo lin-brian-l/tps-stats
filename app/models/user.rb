@@ -1,8 +1,8 @@
 require 'bcrypt'
 
 class User < ApplicationRecord
-  validates :username, { presence: true }
-  validates :email, { uniqueness: true }
+  validates :username, :user_password, { presence: true }
+  validates :username, :email, { uniqueness: true }
 
   def password
     @password ||= BCrypt::Password.new(user_password)
