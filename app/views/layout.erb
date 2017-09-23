@@ -15,7 +15,7 @@
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
           <% if current_user %>
-          <li class="pipe-separate t-light-green left"><a href="/"><%= current_user.username %></a></li>
+          <li class="pipe-separate t-light-green left"><a href="/users/<%= current_user.id %>/entries"><%= current_user.username %></a></li>
             <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
             <li class="pipe-separate t-light-green left">
               <form  action="/logout" method="post" class="in-line">
