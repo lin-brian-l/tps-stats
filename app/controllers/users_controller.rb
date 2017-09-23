@@ -1,5 +1,5 @@
 get '/register' do
-  erb :"users/register"
+  erb :"users/new"
 end
 
 post '/register' do
@@ -11,7 +11,7 @@ post '/register' do
     redirect '/entries'
   else
     @errors = @user.errors.full_messages
-    erb :"users/register"
+    erb :"users/new"
   end
 end
 

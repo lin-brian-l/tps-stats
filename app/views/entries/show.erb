@@ -1,7 +1,7 @@
 <h1><%= @entry.title %></h1>
 
-<span class="entry-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@entry.created_at)}." %></span>
-<p>Posted by: <%= @author.username %></p>
+<span class="entry-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@entry.created_at)}." %> Submitted by: <%= @author.username %></span>
+
 <p><%= @entry.body %></p>
 
 <% if current_user == @author %>
@@ -11,7 +11,7 @@
     </li>
 
     <li class="pipe-separate left">
-      <form method="post" action="/entries/<%= @entry.id %>" class="inline">
+      <form method="post" action="/entries/<%= @entry.id %>">
         <input type="hidden" name="_method" value="delete">
         <input type="submit" value="delete" class="no-border no-outline no-bg c-white hover-underline">
       </form>

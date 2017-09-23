@@ -14,12 +14,18 @@
     <div class="max-w-700 center wrap-float">
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
-          <li class="pipe-separate t-light-green left">
-            <% if current_user %>
-            <a href="/users/<%= @author.id %>/entries">
-              <%= current_user.username %></a> | <a href="/logout">logout</a> | <a href="/">home</a>
-            <% else %>
-                  <a href="/">home</a>  |  <a href="/login">login</a>  |  <a href="/register">register</a>
+          <% if current_user %>
+          <li class="pipe-separate t-light-green left"><a href="/"><%= current_user.username %></a></li>
+            <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+            <li class="pipe-separate t-light-green left">
+              <form  action="/logout" method="post" class="in-line">
+                  <input type="hidden" name="_method" value="delete">
+                  <input type="submit" value="logout" class="no-border no-outline no-bg hover-underline">
+            </form></li>
+          <% else %>
+            <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+            <li class="pipe-separate t-light-green left"><a href="/login">login</a></li>
+            <li class="pipe-separate t-light-green left"><a href="/register">register</a></li>
             <% end %>
           </li>
         </ul>
