@@ -48,6 +48,17 @@ get '/entries/:id/edit' do
 end
 
 
+##get error route and before
+get '/error' do
+  erb :'404'
+end
+
+before '/entries/:id/edit' do
+  # user = User.find_by(entry_id: params[:id])
+  redirect '/error' unless session[:user_id] == user.id
+end
+
+
 get '/logout' do
   session.delete(:user_id)
   redirect '/users/login'

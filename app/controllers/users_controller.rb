@@ -14,6 +14,8 @@ post '/users' do
   redirect '/users'
 end
 
+
+##login and sesssion trackers
 get '/users/login' do
   erb :'users/login'
 end
@@ -26,7 +28,12 @@ post '/users/login' do
   else
     redirect '/users'
   end
+end
 
+get '/logout' do
+  session.delete(:user_id)
+
+  redirect '/login'
 end
 
 ##ensure only logged in users can access restricted page
@@ -44,7 +51,9 @@ end
 
 
 
-
 ##TODO, begin restricting access
 ##SETUP FEEDBACK loop if errors occur on login page
+##Finish new user errors
+##add 404 error
+##test session error in entries controller
 
