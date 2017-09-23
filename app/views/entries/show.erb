@@ -1,6 +1,6 @@
 <h1><%= @entry.title %></h1>
 
-<span class="entry-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@entry.created_at)}." %><%= "Submitted by #{@entry.author.username}." %></span>
+<span class="entry-date block font-3-4 c-lt-gray"><%= "Written on #{long_form_date(@entry.created_at)}. Submitted by " %><a href="/users/<%= @entry.author_id %>/entries"><%= "#{@entry.author.username}." %></a></span>
 
 <p><%= @entry.body %></p>
 
@@ -8,10 +8,10 @@
   <!-- ASK WHY THIS IS BEING STUPID -->
 <% if logged_in? && @current_user.id == @entry.author.id %>
   <li class="pipe-separate left">
-    <a href="/entries/<%= @entry.id %>/edit" class="c-white">edit</a>
+    <a href="/entries/<%= ep @entry.id %>/edit" class="c-white">edit</a>
   </li>
   <li class="pipe-separate left">
-    <form method="post" action="/entries/<%= @entry.id %>" class="inline">
+    <form action="/entries/<%= @entry.id %>" method="post" class="inline">
       <input type="hidden" name="_method" value="delete">
       <input type="submit" value="delete" class="no-border no-outline no-bg c-white hover-underline">
     </form>

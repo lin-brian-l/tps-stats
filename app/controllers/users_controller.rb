@@ -7,7 +7,7 @@ get '/user/:id' do
 end
 
 # show all entries by single user
-get '/user/:id/entries' do
+get '/users/:id/entries' do
   @user = User.find(params[:id])
   @entries = Entry.find_by(author_id: @user.id)
     erb :'users/show'

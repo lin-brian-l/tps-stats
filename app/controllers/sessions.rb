@@ -1,9 +1,5 @@
-get '/sessions' do
-  session.inspect
-end
-
 get '/login' do
-  erb :'users/login'
+  erb :'sessions/login'
 end
 
 post '/login' do
@@ -12,12 +8,12 @@ post '/login' do
     session[:user_id] = @user.id
     redirect "/user/#{@user.id}"
   else
-    @errors = "Try Again!"
+    @errors = "Please enter valid username or password!"
     erb :'users/login'
   end
 end
 
-get '/logout' do
+delete '/logout' do
   session.delete(:user_id)
   redirect '/login'
 end

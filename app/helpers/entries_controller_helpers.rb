@@ -7,3 +7,14 @@ module EntryControllerHelper
 end
 
 helpers EntryControllerHelper
+
+
+def change
+    create_table :entries do |t|
+      t.string :title, { limit: 64, null: false }
+      t.text :body, { null: false }
+      t.integer :author_id, {null: false}
+
+      t.timestamps
+    end
+  end

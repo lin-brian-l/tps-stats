@@ -291,8 +291,11 @@ input[type=text], input[type=password], textarea {
   width:160px;
 }
 
-.login {
-border: none;
-background-color: none;
+.login, .logout{
+  border: 0;
+  background-color: inherit;
+  background: none;
+  padding: 0;
+  text-decoration: none;
 }
 /*.logout*/

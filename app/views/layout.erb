@@ -17,11 +17,9 @@
           <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
           <!-- ASK SOMEONE TO LOOK AT THIS WEIRD TRIPPLE NEGATIVE -->
           <% if logged_in? %>
-            <li class="pipe-separate t-light-green left logout"><form action="/logout" method="get">
-            <input type="submit" value="logout"></form></li>
-          <% elsif !logged_in? %>
-            <li class="pipe-separate t-light-green left login"><form action="/login" method="get">
-            <input type="submit" value="login"></form></li>
+            <%= erb :'partials/_logged_in_form' %>
+          <% else %>
+            <%= erb :'partials/_logged_out_form' %>
           <% end %>
         </ul>
       </nav>

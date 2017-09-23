@@ -48,7 +48,9 @@ end
 
 get '/entries/:id/edit' do
   @entry = find_and_ensure_entry(params[:id])
-  if @current_user == @entry.id
+  ep current_user.id
+  ep @entry.author_id
+  if current_user.id == @entry.author_id
     erb :'entries/edit'
   end
 end

@@ -7,7 +7,6 @@ post '/sign_up' do
 
   if @user.save
     # session[:user_id] = @user.id
-    p "I was saved"
     redirect "/user/#{@user.id}"
   else
     @errors = @user.errors.full_messages

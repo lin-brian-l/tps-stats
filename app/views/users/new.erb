@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Sign up</h2>
+  <h1>Sign up</h1>
 
   <% if @errors %>
     <ul>
@@ -11,18 +11,18 @@
 
   <form method="post" action="/sign_up">
 
-    <label for="username_input">Username:</label>
-    <input type="text" name="user[username]" value="">
+    <label for="username_input" class="block mar-b-1">Username:</label>
+    <input type="text" name="user[username]" class="block w-100 no-outline no-border pad-1 mar-b-2">
     <br>
 
-    <label for="email_input">Email:</label>
-    <input type="text" name="user[email]" value="">
+    <label for="email_input" class="block mar-b-1">Email:</label>
+    <input type="text" name="user[email]" class="block w-100 no-outline no-border pad-1 mar-b-2">
     <br>
 
-    <label for="password_input">Password:</label>
-    <input type="password" name="user[password]" value="">
+    <label for="password_input" class="block mar-b-1">Password:</label>
+    <input type="password" name="user[password]" class="block w-100 no-outline no-border pad-1 mar-b-2">
     <br>
-    <input type="submit" value="Sign up">
+    <input type="submit" value="Sign up" class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">
   </form>
 
   <p>Already a user? <a href="/login">Login</a></p>
