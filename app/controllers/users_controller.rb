@@ -16,8 +16,12 @@ post '/register' do
 end
 
 get '/users/:id/entries' do
-  @author = User.find(params[:id])
-  # @entry = Entry.find_by(@author.id)
+  @authors = User.all
 
-  erb :"users/show"
+  @author = User.find_by(id: params[:id])
+  if @author.nil?
+    halt(404, erb(:'404'))
+  else
+    erb :"users/show"
+  end
 end
