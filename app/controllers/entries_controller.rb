@@ -1,6 +1,7 @@
 # route handlers dealing with the collection
 get '/entries' do
   @entries = Entry.most_recent
+
   session[:user_views] = 0 unless session[:user_views]
   session[:user_views] += 1
 

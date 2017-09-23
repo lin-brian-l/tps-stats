@@ -16,8 +16,8 @@ post '/register' do
 end
 
 get '/users/:id/entries' do
-  # @author = User.find(params[:id])
+  @author = User.find(params[:id])
   # @entry = Entry.find_by(@author.id)
 
-  erb :"users/user_entries"
+  erb :"users/show"
 end
