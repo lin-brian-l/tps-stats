@@ -23,13 +23,11 @@ post '/users/:id/entries' do
     erb :'entries/new'
   end
 end
-
+before '/entries/new' do
+  redirect "/404" if !current_user
+end
 get '/entries/new' do
-  if current_user
-    erb :'entries/new'
-  else
-    erb :'404'
-  end
+  erb :'entries/new'
 end
 
 get '/entries/:id' do
@@ -55,11 +53,11 @@ delete '/entries/:id' do
   redirect '/entries'
 end
 
+before '/entries/:id/edit' do
+  redirect '/404' if !current_user
+end
+
 get '/entries/:id/edit' do
-  if current_user
-    @entry = find_and_ensure_entry(params[:id])
-    erb :'entries/edit'
-  else
-    erb :'404'
-  end
+  @entry = find_and_ensure_entry(params[:id])
+  erb :'entries/edit'
 end

@@ -18,6 +18,10 @@ post '/login' do
   end
 end
 
+get '/404' do
+  erb :'404'
+end
+
 delete '/sessions/:id' do
   session[:user_id] = nil
   redirect '/'
