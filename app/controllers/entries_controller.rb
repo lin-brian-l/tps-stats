@@ -4,9 +4,18 @@ get '/entries' do
   erb :'entries/index'
 end
 
-post '/entries' do
-  @entry = Entry.new(params[:entry])
+get '/users/:id/entries' do
+  if User.find_by(id: params[:id])
+    @entries = Entry.where(author_id: params[:id])
+    erb :'entries/index'
+  else
+    erb :'404'
+  end
+end
 
+post '/users/:id/entries' do
+  @entry = Entry.new(params[:entry])
+  @entry.author_id = current_user.id
   if @entry.save
     redirect "/entries/#{@entry.id}"
   else

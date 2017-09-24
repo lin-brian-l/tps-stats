@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :entries
+  has_many :entries, foreign_key: "author_id"
 
   validates :username, presence: true, uniqueness: { message: "must be unique"}
   validates :email, presence: true, uniqueness: true

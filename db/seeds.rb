@@ -23,4 +23,21 @@ content_for_entries = [
     :body  => "Water spinach arugula pea tatsoi aubergine spring onion bush tomato kale radicchio turnip chicory salsify pea sprouts fava bean. Dandelion zucchini burdock yarrow chickpea dandelion sorrel courgette turnip greens tigernut soybean radish artichoke wattle seed endive groundnut broccoli arugula."}
 ]
 
+content_for_entries.each do |entry|
+  entry[:author_id] = [1,2,3].sample
+end
+
 Entry.create!(content_for_entries)
+
+users = [
+  {username: "vikky",
+    email: "vikky@email.com",
+    password: "123"},
+  {username: "mitch",
+    email: "mitch@email.com",
+    password: "234"},
+  {username: "melissa",
+    email: "melissa@email.com",
+    password: "777"}
+]
+User.create!(users)
