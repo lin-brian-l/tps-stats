@@ -16,7 +16,7 @@
       <% if current_user %>
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
-          <li class="pipe-separate t-light-green left"><a href="/users/new">hello <%= current_user.username %>!</a></li>
+          <li class="pipe-separate t-light-green left">hello <%= current_user.username %>!</a></li>
           <li class="pipe-separate t-light-green left"><%= erb :"/sessions/_delete", locals: { current_user: current_user } %>
             </li>
           <li class="pipe-separate t-light-green left"><a href="/">home</a></li>

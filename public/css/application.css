@@ -290,3 +290,21 @@ input[type=text], input[type=password], textarea {
 .logo {
   width:160px;
 }
+
+.no-style-button {
+  background: none;
+}
+
+.no-style-button input {
+  background: none;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: #32bb7d;
+  text-decoration: none;
+}
+
+.no-style-button input:hover {
+  color: #6ec7a5;
+  text-decoration: underline;
+}
