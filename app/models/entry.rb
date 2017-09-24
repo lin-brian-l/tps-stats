@@ -1,4 +1,6 @@
 class Entry < ApplicationRecord
+  belongs_to :author
+
   validates :title, :body, { presence: true }
 
   def self.most_recent

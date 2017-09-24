@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :entries
+
   validates :username, presence: true, uniqueness: { message: "must be unique"}
   validates :email, presence: true, uniqueness: true
   validate :empty_password
