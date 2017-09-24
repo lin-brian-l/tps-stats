@@ -9,6 +9,7 @@
   </ul>
 <% end %>
 
+<% if logged_in? %>
 <form method="post" action="/entries/<%= @entry.id %>">
   <input type="hidden" name="_method" value="put">
 
@@ -20,3 +21,4 @@
 
   <input type="submit" value="Update" tabindex="3" class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">
 </form>
+<% end %>

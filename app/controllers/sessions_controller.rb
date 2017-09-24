@@ -4,11 +4,11 @@ end
 
 post '/sessions/new' do
   user = User.find_by(username: params[:username])
-    if user.authenticate(params[:username], params[:encrypted_password])
+    if user.authenticate(params[:username], params[:password])
       session[:user_id] = user.id
       redirect '/entries'
     else
-      status 422
+      status 401
       @errors = "status"
       erb :'/sessions/new'
     end

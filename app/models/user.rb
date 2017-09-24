@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :entries
   validates :email, :username, :encrypted_password, { presence: true }
   validates :username, :email, { uniqueness: true }
 
@@ -11,7 +12,7 @@ class User < ApplicationRecord
     self.encrypted_password = @password
   end
 
-  def authenticate(username, password)
-    self.password == password && self.username == username
+  def authenticate(username, password_given)
+    self.encrypted_password == password && self.username == username
   end
 end
