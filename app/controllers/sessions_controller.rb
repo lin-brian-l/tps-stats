@@ -25,3 +25,7 @@ delete '/logout' do
   redirect '/entries'
 end
 
+
+get '/404' do
+  erb :'404'
+end

@@ -4,7 +4,8 @@
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/application.css">
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+  <!-- // <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
   <script src="/js/application.js"></script>
 
   <title>Broccoli Blog</title>
@@ -14,7 +15,7 @@
     <div class="max-w-700 center wrap-float">
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
-
+          <!-- Could make partials here? -->
           <% if current_user %>
             <li class="pipe-separate t-light-green left">Hello, <%= current_user.username %>!</li>
             <li class="pipe-separate t-light-green left"><a href="/">home</a></li>

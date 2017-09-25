@@ -16,6 +16,10 @@ post '/entries' do
   end
 end
 
+before '/entries/new' do
+  redirect :'/404' if !current_user
+end
+
 get '/entries/new' do
   erb :'entries/new'
 end
