@@ -5,6 +5,7 @@ get '/entries' do
 end
 
 post '/entries' do
+  authenticate!
   @entry = Entry.new(params[:entry])
 
   if @entry.save
@@ -16,6 +17,7 @@ post '/entries' do
 end
 
 get '/entries/new' do
+  authenticate!
   erb :'entries/new'
 end
 
@@ -25,7 +27,9 @@ get '/entries/:id' do
 end
 
 put '/entries/:id' do
+  authenticate!
   @entry = find_and_ensure_entry(params[:id])
+  authorize!(@entry.author_id)
   @entry.assign_attributes(params[:entry])
 
   if @entry.save
@@ -37,7 +41,9 @@ put '/entries/:id' do
 end
 
 delete '/entries/:id' do
+  authenticate!
   @entry = find_and_ensure_entry(params[:id])
+  authorize!(@entry.author_id)
   @entry.destroy
   redirect '/entries'
 end
