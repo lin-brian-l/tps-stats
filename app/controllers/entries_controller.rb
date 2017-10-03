@@ -31,7 +31,7 @@ end
 put '/entries/:id' do
   authenticate!
   @entry = find_and_ensure_entry(params[:id])
-  authorize!(@entry.author_id)
+  authorize!(@entry.author)
   @entry.assign_attributes(params[:entry])
 
   if @entry.save
@@ -45,7 +45,7 @@ end
 delete '/entries/:id' do
   authenticate!
   @entry = find_and_ensure_entry(params[:id])
-  authorize!(@entry.author_id)
+  authorize!(@entry.author)
   @entry.destroy
   redirect '/entries'
 end
