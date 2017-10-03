@@ -1,7 +1,8 @@
 class User < ApplicationRecord
   include BCrypt
-  validates :username, :email, uniqueness: true, presence: true
+  has_many :entries, :foreign_key => "author_id", :class_name => "Entry", :dependent => :destroy
 
+  validates :username, :email, presence: true
   validate :validate_password
 
   def password
@@ -21,8 +22,8 @@ class User < ApplicationRecord
   def validate_password
     if @raw_password.nil?
       errors.add(:password, "is required")
-    elsif @raw_password.length < 6
-      errors.add(:password, "must be 6 characters or more")
+    elsif @raw_password.length < 8
+      errors.add(:password, "must be 8 characters or more")
     end
   end
 
