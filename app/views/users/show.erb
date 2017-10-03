@@ -6,7 +6,8 @@
         <a href="/entries/<%= entry.id %>" class="entry-title font-2 pad-b-1-4 c-white"><%= entry.title %></a>
         <span class="entry-date block font-3-4 c-lt-gray">Written on <%= long_form_date(entry.created_at) %>. Submitted by <%= @user.username %></span>
         <p class="entry-stub"><%= stub(entry.body) %></p>
-        <% if authorized?(@user) %>
+
+        <% if authorized?(entry.author) %>
           <ul class="no-bullets no-padding mar-t-2">
             <li class="pipe-separate left">
               <a href="/entries/<%= entry.id %>/edit" class="c-white">edit</a>
@@ -20,6 +21,7 @@
         </ul>
       </li>
       <% end %>
+
     <% end %>
   </ul>
 </main>

@@ -23,6 +23,7 @@ get '/entries/new' do
 end
 
 get '/entries/:id' do
+  authenticate!
   @entry = find_and_ensure_entry(params[:id])
   erb :'entries/show'
 end
@@ -52,6 +53,6 @@ end
 get '/entries/:id/edit' do
   authenticate!
   @entry = find_and_ensure_entry(params[:id])
-  authorize!(@entry.author_id)
+  authorize!(@entry.author)
   erb :'entries/edit'
 end
