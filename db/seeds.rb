@@ -24,3 +24,18 @@ content_for_entries = [
 ]
 
 Entry.create!(content_for_entries)
+
+user_info = [
+  {username: "brian", email: "brian@broccoli.com", password: "brian"},
+  {username: "donald", email: "donald@broccoli.com", password: "donald"},
+  {username: "qiu", email: "qiu@broccoli.com", password: "qiu"},
+  {username: "peter", email: "peter@broccoli.com", password: "peter"},
+  {username: "pat", email: "pat@broccoli.com", password: "pat"},
+]
+
+User.create!(user_info)
+
+User.all.each_with_index do |user, index|
+  user.entries << Entry.find(index + 1)
+  user.entries << Entry.find(index + 6)
+end
