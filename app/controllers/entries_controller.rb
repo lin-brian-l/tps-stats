@@ -49,6 +49,8 @@ delete '/entries/:id' do
 end
 
 get '/entries/:id/edit' do
+  authenticate!
   @entry = find_and_ensure_entry(params[:id])
+  authorize!(@entry.author_id)
   erb :'entries/edit'
 end

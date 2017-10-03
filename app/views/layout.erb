@@ -15,7 +15,7 @@
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
         <% if logged_in? %>
-        <li class="pipe-separate t-light-green left"><a href="/users/<%= current_user.id %>">hello, <%= current_user.username %></a></li>
+        <li class="pipe-separate t-light-green left"><a href="/users/<%= current_user.id %>/entries">hello, <%= current_user.username %></a></li>
         <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
         <li class="pipe-separate t-light-green left">
           <form method="POST" action="/sessions">
