@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   include BCrypt
-  has_many :entries, :foreign_key => "author_id", :class_name => "Entry", :dependent => :destroy
+  has_many :entries, :foreign_key => "author_id",
+  # :dependent => :destroy
 
   validates :username, :email, presence: true
   validate :validate_password
