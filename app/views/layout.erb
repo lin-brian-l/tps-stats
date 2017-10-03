@@ -15,12 +15,13 @@
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
         <% if logged_in? %>
-        <li class="pipe-separate t-light-green left"><a href="/users/<%= current_user.id %>">Hello, <%= current_user.username %></a></li>
+        <li class="pipe-separate t-light-green left"><a href="/users/<%= current_user.id %>">hello, <%= current_user.username %></a></li>
         <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
-        <li class="pipe-separate t-light-green left"><form method="POST" action="/sessions">
-              <input type="hidden" name="_method" value="DELETE" />
-              <input type="submit" class="button" value="Logout" />
-            </form>
+        <li class="pipe-separate t-light-green left">
+          <form method="POST" action="/sessions">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="log out" class="no-border no-outline no-bg hover-underline">
+          </form>
         </li>
         <% else %>
         <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
