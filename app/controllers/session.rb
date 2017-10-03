@@ -1,5 +1,5 @@
 get '/sessions/new' do
-  erb :'session/new'
+  erb :'sessions/new'
 end
 
 post '/sessions' do
@@ -10,7 +10,7 @@ post '/sessions' do
     redirect '/'
   else
     @message = "You have entered your username or password incorrectly."
-    erb :"session/new"
+    erb :"sessions/new"
   end
 end
 
