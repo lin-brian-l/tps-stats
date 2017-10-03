@@ -2,29 +2,25 @@
 
 <% if @errors %>
   <span>Something went wrong:</span>
-  <ul class="error-list pad-b-2">
-    <% @errors.each do |error| %>
-      <li class="error-item"><%= error %></li>
-    <% end %>
-  </ul>
+  <%= erb :"_errors", locals: {errors: @errors} %>
 <% end %>
 
 <form action="/users" method="post" >
   <p>
     <span>
       <label for="username">Username:</label>
-      <input type="text" name="user[username]" class="block w-100 no-outline no-border pad-1 mar-b-2"/>
+      <input type="text" name="user[username]" placeholder="Username" class="block w-100 no-outline no-border pad-1 mar-b-2"/>
     </span>
   </p>
   <p>
     <span>
       <label for="email">Email address:</label>
-      <input type="text" name="user[email]" class="block w-100 no-outline no-border pad-1 mar-b-2"/>
+      <input type="text" name="user[email]" placeholder="Email" class="block w-100 no-outline no-border pad-1 mar-b-2"/>
     </span>
   </p>
   <p>
     <span>
-      <label for="password">Password:</label>  <input type="password" name="user[password]" class="block w-100 no-outline no-border pad-1 mar-b-2"/>
+      <label for="password">Password:</label>  <input type="password" name="user[password]" class="block w-100 no-outline no-border pad-1 mar-b-2"/placeholder="Password">
     </span>
   </p>
   <p><input type="submit" value="Login">
