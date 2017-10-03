@@ -21,6 +21,10 @@ body {
   height: 100%;
 }
 
+#new_post_link {
+  text-align: center;
+}
+
 a {
   color: #32bb7d;
   text-decoration: none;

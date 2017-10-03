@@ -1,0 +1,6 @@
+<h1>Entries by <%= @user.username %></h1>
+
+<% @user.entries.each do |entry| %>
+  <h2><a href="/entries/<%= entry.id %>"><%= entry.title %></a></h2>
+  <%= erb :'/entries/_entry_description', locals: { entry: entry } %>
+<% end %>

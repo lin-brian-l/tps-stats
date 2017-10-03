@@ -26,11 +26,11 @@ content_for_entries = [
 Entry.create!(content_for_entries)
 
 user_info = [
-  {username: "brian", email: "brian@broccoli.com", password: "brian"},
+  {username: "brian", email: "brian@broccoli.com", password: "briann"},
   {username: "donald", email: "donald@broccoli.com", password: "donald"},
-  {username: "qiu", email: "qiu@broccoli.com", password: "qiu"},
-  {username: "peter", email: "peter@broccoli.com", password: "peter"},
-  {username: "pat", email: "pat@broccoli.com", password: "pat"},
+  {username: "qiu", email: "qiu@broccoli.com", password: "qiuuuu"},
+  {username: "peter", email: "peter@broccoli.com", password: "peterr"},
+  {username: "pat", email: "pat@broccoli.com", password: "patttt"},
 ]
 
 User.create!(user_info)

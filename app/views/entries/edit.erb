@@ -1,0 +1,10 @@
+<h1>Edit Entry</h1>
+
+<% if @errors %>
+  <%= erb :"/_errors" %>
+<% end %>
+
+<form method="post", action="/entries/<%= @entry.id %>">
+  <input type="hidden", name="_method", value="put">
+  <%= erb :"/entries/_entry_form" %>
+</form>

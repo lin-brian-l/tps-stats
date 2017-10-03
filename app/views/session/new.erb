@@ -1,3 +1,13 @@
-<h1>Register</h1>
-<form method="post", action="sessions/">
+<h1>Login</h1>
+
+<% if @error %>
+<ul>
+  <li><%= @error %></li>
+</ul>
+<% end %>
+
+<form method="post", action="/sessions">
+  <input type="text" name="email" placeholder="Email"><br>
+  <input type="password" name="password" placeholder="Password"><br>
+  <input type="submit" value="Login">
 </form>
