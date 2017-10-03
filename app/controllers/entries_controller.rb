@@ -7,6 +7,7 @@ end
 post '/entries' do
   authenticate!
   @entry = Entry.new(params[:entry])
+  @entry.author_id = current_user.id
 
   if @entry.save
     redirect "/entries/#{@entry.id}"

@@ -17,5 +17,6 @@ end
 get '/users/:id/entries' do
   authenticate!
   @user = User.find_by(id: params[:id])
+  @entry = Entry.find_by(author_id: @user.id)
   erb :"users/show"
 end
