@@ -14,7 +14,18 @@
     <div class="max-w-700 center wrap-float">
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
-          <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+        <% if logged_in? %>
+        <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
+        <li class="pipe-separate t-light-green left"><a href="/users/<%= current_user.id %>">Hello, <%= current_user.name %></a></li>
+        <li class="pipe-separate t-light-green left"><form method="POST" action="/sessions">
+              <input type="hidden" name="_method" value="DELETE" />
+              <input type="submit" class="button" value="Logout" />
+            </form>
+        </li>
+        <% else %>
+        <li class="pipe-separate t-light-green left"><a href="/sessions/new">login</a></li>
+        <li class="pipe-separate t-light-green left"><a href="/users/new">sign up</a></li>
+        <% end %>
         </ul>
       </nav>
 
