@@ -1,0 +1,23 @@
+<h1>Register</h1>
+
+<% if @errors %>
+  <span>Something went wrong:</span>
+  <ul class="error-list pad-b-2">
+    <% @errors.each do |error| %>
+      <li class="error-item"><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form method="post" action="/users">
+  <label for="title-input" class="block mar-b-1">Username:</label>
+  <input id="title-input" name="user[username]" type="text" value="<%= @user.try(:username) %>" tabindex="1" class="block w-100 no-outline no-border pad-1 mar-b-2">
+
+  <label for="title-input" class="block mar-b-1">Email:</label>
+  <input id="title-input" name="user[email]" tabindex="2" class="block w-100 no-outline no-border pad-1 mar-b-2" type="text" value="<%= @user.try(:email) %>">
+
+  <label for="title-input" class="block mar-b-1">Password:</label>
+  <input id="title-input" name="user[password]" tabindex="2" class="block w-100 no-outline no-border pad-1 mar-b-2" type="password" value="<%= @user.try(:password) %>">
+
+  <input type="submit" value="Register" tabindex="3" class="block button w-100 mar-t-4 mar-b-3 pad-2 round-1 text-c center no-border no-outline">
+</form>

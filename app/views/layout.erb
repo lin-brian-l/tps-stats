@@ -10,19 +10,24 @@
   <title>Broccoli Blog</title>
 </head>
 <body>
-  <header role="banner" class="mar-t-5 pad-t-2 pad-b-4 pad-s-1 wrap-float bg-white">
-    <div class="max-w-700 center wrap-float">
-      <nav class="clearfix mar-b-1">
-        <ul class="no-bullets no-margin no-padding right">
-          <li class="pipe-separate t-light-green left"><a href="/">home</a></li>
-        </ul>
-      </nav>
-
+  <header role="banner" class="wrap-float bg-white">
+    <div class="mar-t-header ">
       <div class="logo-container">
-        <img class="logo" src="/images/logo.png" class="center block">
-        <h1>Broccoli Blog</h1>
+        <img class="logo" src="/images/logo2.png" class="center block">
       </div>
     </div>
+      <nav class="clearfix full-nav">
+        <ul class="no-bullets no-margin no-padding">
+          <li class="pipe-separate t-light-green left home"><a href="/">home</a></li>
+          <% if logged_in? %>
+          <li class="pipe-separate-no-line left home"><a href="/sessions/new">logout</a></li>
+          <li class="pipe-separate t-light-green right home">Hello, <a href="/users/<%= current_user.id %>"><%= current_user.username %></a>!</li>
+          <% else %>
+          <li class="pipe-separate t-light-green left home"><a href="/users/new">register</a></li>
+          <li class="pipe-separate t-light-green left home"><a href="/sessions/new">login</a></li>
+          <% end %>
+        </ul>
+      </nav>
   </header>
 
   <div class="bg-dk-green pad-t-2 pad-s-1 pad-b-8 mar-b-16 c-white">

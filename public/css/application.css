@@ -12,7 +12,7 @@
 html {
   height: 100%;
   background-color: #32bb7d;
-  background: url(../images/diamond-bg.jpg);
+  background: url(../images/pattern-bg.jpg);
   background-attachment: fixed;
   line-height: 1.4;
 }
@@ -32,17 +32,30 @@ a {
   }
 
 input[type=text], input[type=password], textarea {
-  color: #05724f;
+  color: #000;
 }
 
+
+.full-nav {
+  background-color: #C10A1D;
+  width: 100%;
+  padding: 10px;
+}
+
+.center {
+  margin: 0 auto;
+  text-align: center;
+}
 
 /* positioning */
 .block {
   display: block;
 }
 
-.center {
-  margin: 0 auto;
+.home a {
+  color: white;
+  text-align: center;
+  width: 20%;
 }
 
 .inline {
@@ -60,16 +73,16 @@ input[type=text], input[type=password], textarea {
 
 /* formatting */
 .bg-dk-green {
-  background-color: #05724f;
+  background-color: #2a839e;
 }
 
 .bg-white {
-  background-color: #fefefe;
+  background-color: transparent;
 }
 
 .button {
-  background: #32bb7d;
-  color: #fefefe;
+  background: #C10A1D;
+  color: #fff;
   padding: 1em;
   text-decoration: none;
 }
@@ -77,7 +90,7 @@ input[type=text], input[type=password], textarea {
   .button:hover {
     color: white;
     text-decoration: none;
-    background-color: #6ec7a5;
+    background-color: #a30313;
   }
 
 .c-dk-green {
@@ -156,8 +169,8 @@ input[type=text], input[type=password], textarea {
   margin-top: 4em;
 }
 
-.mar-t-5 {
-  margin-top: 5em;
+.mar-t-header {
+  margin: 5em;
 }
 
 .max-w-700 {
@@ -239,6 +252,11 @@ input[type=text], input[type=password], textarea {
   border-right: 1px solid;
 }
 
+.pipe-separate-no-line {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
   .pipe-separate:first-of-type {
     padding-left: 0;
   }
@@ -253,7 +271,7 @@ input[type=text], input[type=password], textarea {
 }
 
 .t-light-green {
-  color: #32bb7d;
+  color: #fff;
 }
 
 .text-c {
@@ -277,7 +295,7 @@ input[type=text], input[type=password], textarea {
 }
 
 .logo-container {
-  border: 5px solid #05724f;
+  border: 15px solid #C10A1D;
   color: #05724f;
   width: 305px;
   height: 305px;
@@ -288,5 +306,8 @@ input[type=text], input[type=password], textarea {
 }
 
 .logo {
+  position: relative;
+  top: 30px;
   width:160px;
+  vertical-align: middle;
 }
