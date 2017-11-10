@@ -14,7 +14,7 @@ post '/entries' do
   @entry = Entry.new(params[:entry])
   @entry.user_id = session[:user_id]
   if @entry.save
-    redirect "/entries/#{@entry.id}"
+    redirect "/entries/#{@entry.id}?created=true"
   else
     @errors = @entry.errors.full_messages
     erb :'entries/new'
@@ -22,6 +22,7 @@ post '/entries' do
 end
 
 get '/entries/:id' do
+  @message = "Thanks for adding to this site!" if params[:created]
   @entry = Entry.find_by(id: params[:id])
   erb :'entries/show'
 end
