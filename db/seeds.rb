@@ -12,9 +12,9 @@ players = [
 Player.create!(players)
 
 tournament = {
-  :name => "Tri-point Smash 1",
+  :name => "Testing1",
   :date => "3/2/18",
-  :link => "https://smash.gg/tournament/tripoint-smash-1"
+  :link => "asdfasdf"
 }
 
 Tournament.create(tournament)
