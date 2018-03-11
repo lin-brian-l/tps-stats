@@ -7,6 +7,7 @@ class User < ApplicationRecord
   validates :email, { presence: true }
 
   validate :valid_password
+  has_one :player
 
   def password
     @password ||= Password.new(encrypted_password)
