@@ -19,18 +19,35 @@
 
 # Tournament.create(tournament)
 
-tournament_attendee = {
-  tournament_id: 1,
-  media: false,
-  spectator: false,
-  competitor: true,
-  facilitator: false
-}
+# tournament_attendee = {
+#   tournament_id: 1,
+#   media: false,
+#   spectator: false,
+#   competitor: true,
+#   facilitator: false
+# }
 
-Player.all.each do |player| 
-  TournamentAttendee.create(tournament_attendee)
-  player.attended_tournaments << TournamentAttendee.last
-end
+# Player.all.each do |player| 
+#   TournamentAttendee.create(tournament_attendee)
+#   player.attended_tournaments << TournamentAttendee.last
+# end
+
+# events = [
+#   { name: "Melee Singles" }, { name: "Project M Singles" }
+# ]
+
+# events.each do |event|
+#   Event.create(event)
+#   Tournament.first.events << Event.last
+# end
+
+# Player.all.each do |player|
+#   Event.all.each do |event| 
+#     EventEntrant.create();
+#     event.event_entrants << EventEntrant.last
+#     player.entered_events << EventEntrant.last
+#   end
+# end
 
 # Blog entry content courtesy of veggieipsum.com.
 
