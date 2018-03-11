@@ -6,5 +6,6 @@ class CreateTournaments < ActiveRecord::Migration[5.0]
       t.string :link
 
       t.timestamps
+    end
   end
 end

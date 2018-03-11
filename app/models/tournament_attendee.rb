@@ -1,3 +1,4 @@
 class TournamentAttendee < ApplicationRecord
-  # Remember to create a migration!
+  belongs_to :tournament
+  belongs_to :player
 end

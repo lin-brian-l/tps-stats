@@ -1,3 +1,3 @@
 class Tournament < ApplicationRecord
-  # Remember to create a migration!
+  has_many :tournament_attendees
 end

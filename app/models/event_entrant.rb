@@ -1,3 +1,4 @@
 class EventEntrant < ApplicationRecord
-  belongs_to :
+  belongs_to :event 
+  belongs_to :player
 end
