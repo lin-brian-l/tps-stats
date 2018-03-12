@@ -9,12 +9,25 @@ class Event < ApplicationRecord
   has_many :matches, through: :groups
 
   def list_results
+    self.output_results(self.sort_results)
+  end
+
+  def list_top_8
+    top_8_results = self.sort_results.select { |result| result.placing <= 7 }
+    self.output_results(top_8_results)
+  end
+
+  def sort_results
     standings = self.results
-    ordered_standings = standings.sort_by { |standing| standing.placing }
-    ordered_standings.map do |standing| 
+    standings.sort_by { |standing| standing.placing }
+  end
+
+  def output_results(standing_array)
+    standing_array.map do |standing| 
       "#{standing.placing}#{get_suffix(standing.placing)}: #{standing.player.full_tag}"
     end
   end
+
 end
 
 def get_suffix(placing)

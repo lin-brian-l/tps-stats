@@ -1,1 +1,13 @@
-<h1><a href
+<h1>All Tournaments</h1>
+
+<% @tournaments.each do |tournament| %>
+<div class="tournament">
+  <h2><a href="/tournaments/<%= tournament.id %>"><%= tournament.name %></a></h2>
+  <ul>
+    <% tournament.events.each do |event| %>
+    <li><%= event.name %></li>
+    <% end %>
+  </ul> 
+  <span><a href="<%= tournament.link %>">Source</a></span>
+</div>
+<% end %>
