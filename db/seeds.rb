@@ -19,11 +19,6 @@
 
 # Tournament.create(tournament)
 
-# # Player.all.each do |player| 
-# #   TournamentAttendee.create(tournament_attendee)
-# #   player.attended_tournaments << TournamentAttendee.last
-# # end
-
 # events = [
 #   { name: "Melee Singles" }, { name: "Project M Singles" }
 # ]
@@ -33,39 +28,15 @@
 #   Tournament.first.events << Event.last
 # end
 
-# # Player.all.each do |player|
-# #   Event.all.each do |event| 
-# #     EventEntrant.create();
-# #     event.event_entrants << EventEntrant.last
-# #     player.entered_events << EventEntrant.last
-# #   end
-# # end
-
 # Event.all.each do |event|
 #   Phase.create(name: "Bracket")
 #   event.phases << Phase.last
 # end
 
-# # Player.all.each do |player|
-# #   Phase.all.each do |phase| 
-# #     PhasePlayer.create();
-# #     phase.phase_players << PhasePlayer.last
-# #     player.entered_phases << PhasePlayer.last
-# #   end
-# # end
-
 # Phase.all.each do |phase|
 #   Group.create(name: "Bracket")
 #   phase.groups << Group.last
 # end
-
-# # Player.all.each do |player|
-# #   Group.all.each do |group| 
-# #     GroupPlayer.create();
-# #     group.group_players << GroupPlayer.last
-# #     player.entered_groups << GroupPlayer.last
-# #   end
-# # end
 
 # matches_PM = [
 #   { round_short: "WS",

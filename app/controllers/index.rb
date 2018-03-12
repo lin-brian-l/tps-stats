@@ -1,3 +1,3 @@
 get '/' do
-  redirect '/entries'
+  redirect '/tournaments'
 end
