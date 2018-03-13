@@ -1,10 +1,10 @@
 <h1>New Tournament</h1>
 
-<% if @errors %>
-  <%= erb :"/_errors" %>
+<% if @error %>
+<p><%= @error %></p>
 <% end %>
 
 <form id="new-tournament" method="post", action="/tournaments">
-  <input type="text" name="touranment[link]" placeholder="Smash.gg Link" value="<%= @tournament.link %>"><br>
-  <button id="submit-link" type="button" value="Submit Link"></button>
+  <input type="text" name="tournament[link]" placeholder="Smash.gg Link" value="<%= @link %>"><br>
+  <input type="submit" value="Submit">
 </form>

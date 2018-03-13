@@ -3,7 +3,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
     create_table :events do |t|
       t.integer :tournament_id
       t.string :name, { null: false }
-      t.integer :smash_gg_event_id
+      t.string :smash_gg_link
 
       t.timestamps
     end
