@@ -1,7 +1,7 @@
 require "http"
 
 get '/tournaments' do
-  @tournaments = Tournament.all
+  @tournaments = Tournament.order(date: :desc)
   erb :'tournaments/index'
 end
 
@@ -103,7 +103,7 @@ def save_event(event)
     "id": event["id"],
     "tournament_id": event["tournamentId"],
     "name": event["name"],
-    "smash_gg_link": "https://smash.gg" + event["slug"]
+    "smash_gg_link": "https://smash.gg/" + event["slug"]
   }
   event = Event.new(event_hash)
   event.save

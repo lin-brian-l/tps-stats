@@ -1,0 +1,6 @@
+<h1>Player List</h1>
+<ul>
+<% @players.each do |player| %>
+  <li><a href="/players/<%= player.id %>"><%= player.full_tag %></a></li>
+<% end %>
+</ul>

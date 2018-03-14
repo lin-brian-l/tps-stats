@@ -11,8 +11,8 @@
   <% tournament.events.each do |event| %>
     <div class="event">
       <p><u><%= event.name %> Top 8</u></p> 
-      <% event.list_top_8.each do |result| %>
-      <span><%= result %></span><br>
+      <% event.list_top_8.each do |placing| %>
+      <span><a href="/players/<%= placing.player.id %>"><%= placing.placing %><%= get_suffix(placing.placing) %>: <%= placing.player.full_tag %></a></span><br>
       <% end %> 
     </div>
   <% end %>  

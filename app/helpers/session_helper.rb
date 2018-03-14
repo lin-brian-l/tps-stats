@@ -31,3 +31,7 @@ def get_suffix(placing)
       "th"
   end
 end
+
+def reverse_tournament_date(array)
+  array.sort_by { |element| element.tournament.date }.reverse
+end

@@ -16,6 +16,10 @@ class Player < ApplicationRecord
     played_matches_1.or(played_matches_2)
   end
 
+  def no_dq(match_array)
+    match_array.select { |played_match| played_match.loser_id != nil }
+  end
+
   def query_played_matches(query, id)
     valid_queries = ["group", "phase", "event", "tournament"]
     return false unless valid_queries.include?(query)

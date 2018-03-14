@@ -13,8 +13,9 @@ class Event < ApplicationRecord
   end
 
   def list_top_8
-    top_8_results = self.sort_results.select { |result| result.placing <= 7 }
-    self.output_results(top_8_results)
+    # top_8_results = self.sort_results.select { |result| result.placing <= 7 }
+    # self.output_results(top_8_results)
+    self.results.limit(8)
   end
 
   def sort_results

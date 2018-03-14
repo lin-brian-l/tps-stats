@@ -9,8 +9,8 @@
         <li>Entrant count: <%= event.entrants.count %></li>
         <li><a href=<%= event.smash_gg_link %>>Event Link</a></li>
         <li><u>Full Results</u></li>
-        <% event.list_results.each do |placing| %>
-          <span><%= placing %></span><br>
+        <% event.results.each do |placing| %>
+          <span><a href="/players/<%= placing.player.id %>"><%= placing.placing %><%= get_suffix(placing.placing) %>: <%= placing.player.full_tag %></a></span><br>
         <% end %>
       </ul>
     </div>
