@@ -12,17 +12,16 @@ end
 
 get '/tournaments/:id' do
   @tournament = Tournament.find_by(id: params[:id])
+  @events = @tournament.events
   erb :'tournaments/show'  
 end
 
 post '/tournaments' do
   @link = params[:tournament][:link]
   link = /(?<=tournament\/)(.+)[\d]/.match(@link)
-  @http = HTTP.get("https://api.smash.gg/tournament/" + link[0] + "?expand[]=phase&expand[]=groups&expand[]=event")
-  json_obj = JSON.parse(@http)
+  http = HTTP.get("https://api.smash.gg/tournament/" + link[0] + "?expand[]=phase&expand[]=groups&expand[]=event")
+  json_obj = JSON.parse(http)
   tournament_obj = json_obj["entities"]["tournament"]
-  # print tournament_obj["id"].class
-  print "******************" + "found" + "***************" if Tournament.find_by(id: tournament_obj["id"])
   if !Tournament.find_by(id: tournament_obj["id"])
     if !save_tournament(tournament_obj)
       @error = "Tournament failed to save."
@@ -65,6 +64,19 @@ post '/tournaments' do
       if !save_group(group)
         @error = "The group with name #{group["displayIdentifier"]}, ID #{group["id"]}, and phase ID #{phase["phaseId"]} failed to save."
         return erb :'tournaments/new'
+      else 
+        @group_http = HTTP.get("https://api.smash.gg/phase_group/" + group["id"].to_s + "?expand[]=sets&expand[]=standings&expand[]=entrants&expand[]=seeds")
+        group_json = JSON.parse(@group_http)
+        player_array = group_json["entities"]["player"]
+
+        create_players(player_array)
+
+        standing_array = group_json["entities"]["standings"]
+        create_standing(standing_array, player_array)
+
+        matches_array = group_json["entities"]["sets"]
+        create_matches(matches_array, player_array)        
+
       end
     else
       @error = "A group with ID #{group["id"]} already exists."
@@ -72,10 +84,7 @@ post '/tournaments' do
     end
   end
 
-  erb :'tournaments/test'
-  # puts params[:tournament][:link]
-  # puts json_obj
-  # puts json_obj["entities"]["tournament"]["id"]
+  redirect "/tournaments/#{tournament_obj['id']}"
 end
 
 def save_tournament(tournament)
@@ -118,4 +127,60 @@ def save_group(group)
   }
   group = Group.new(group_hash)
   group.save
+end
+
+def create_players(player_array)
+  player_array.each do |player| 
+    Player.find_or_create_by(gamer_tag: player["gamerTag"], sponsor: player["prefix"])
+  end
+end
+
+def create_standing(standing_array, player_array)
+  standing_array.each do |standing|
+    competitor_id = find_player_id(standing["entrantId"].to_s, player_array)
+    event_id = Phase.find(standing["phaseId"]).event.id
+    standing_hash = {
+      "player_id": competitor_id,
+      "event_id": event_id,
+      "placing": standing["placement"],
+      "games_played": standing["gamesPlayed"],
+      "games_won": standing["games_won"],
+      "sets_played": standing["setsPlayed"],
+      "sets_won": standing["setsWon"]
+    }
+    EventEntrant.create(standing_hash)
+  end
+end
+
+def create_matches(matches_array, player_array)
+  matches_array.each do |played_set|
+    competitor_1_id = find_player_id(played_set["entrant1Id"].to_s, player_array)
+    competitor_2_id = find_player_id(played_set["entrant2Id"].to_s, player_array)
+    match_hash = {
+      "id": played_set["id"],
+      "group_id": played_set["phaseGroupId"],
+      "round_short": played_set["shortRoundText"],
+      "round_full": played_set["fullRoundText"],
+      "player1_id": competitor_1_id,
+      "player2_id": competitor_2_id,
+      "winner_id": played_set["entrant1Id"] == played_set["winnerId"] ? competitor_1_id : competitor_2_id,
+      "loser_id": played_set["entrant1Id"] == played_set["loserId"] ? competitor_1_id : competitor_2_id,
+      "winner_score": played_set["entrant1Id"] == played_set["winnerId"] ? played_set["entrant1Score"] : played_set["entrant2Score"],
+      "loser_score": played_set["entrant1Id"] == played_set["loserId"] ? played_set["entrant1Score"] : played_set["entrant2Score"],
+      "loser_placing": played_set["lPlacement"],
+      "winner_placing": played_set["wPlacement"]
+    }
+    Match.create(match_hash)
+  end
+end
+
+def find_player(entrant_id, player_array)
+  return nil if entrant_id.length == 0
+  competitor_tag = player_array.find { |player| entrant_id == player["entrantId"] }["gamerTag"]
+  Player.find_by(gamer_tag: competitor_tag)
+end
+
+def find_player_id(entrant_id, player_array)
+  player = find_player(entrant_id, player_array)
+  player ? player.id : nil
 end

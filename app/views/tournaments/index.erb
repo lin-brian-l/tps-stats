@@ -5,11 +5,17 @@
 <% @tournaments.each do |tournament| %>
 <div class="tournament">
   <h2><a href="/tournaments/<%= tournament.id %>"><%= tournament.name %></a></h2>
-  <ul>
-    <% tournament.events.each do |event| %>
-    <li><%= event.name %></li>
-    <% end %>
-  </ul> 
-  <span><a href="<%= tournament.link %>">Source</a></span>
+  <%= erb :'/tournaments/_tournament_description', locals: { tournament: tournament } %>
+
+  <div class="event-container">
+  <% tournament.events.each do |event| %>
+    <div class="event">
+      <p><u><%= event.name %> Top 8</u></p> 
+      <% event.list_top_8.each do |result| %>
+      <span><%= result %></span><br>
+      <% end %> 
+    </div>
+  <% end %>  
+  </div>
 </div>
 <% end %>

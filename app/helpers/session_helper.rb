@@ -17,3 +17,17 @@ end
 def authorize!(owner)
   redirect '/entries' unless authorized?(owner)
 end
+
+def get_suffix(placing)
+  return "th" if (placing.between?(4,20))
+  case placing.digits.first
+    when 1
+      "st"
+    when 2
+      "nd"
+    when 3
+      "rd"
+    else
+      "th"
+  end
+end

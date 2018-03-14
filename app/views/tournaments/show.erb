@@ -1,1 +1,19 @@
-<p>plz show</p>
+<div class="tournament">
+  <h1><%= @tournament.name %></h1>
+  <%= erb :'/tournaments/_tournament_description', locals: { tournament: @tournament } %>
+  <div class="event-container">
+  <% @events.each do |event| %>
+    <div class="event">
+      <h2><u><%= event.name %></u></h2>
+      <ul>
+        <li>Entrant count: <%= event.entrants.count %></li>
+        <li><a href=<%= event.smash_gg_link %>>Event Link</a></li>
+        <li><u>Full Results</u></li>
+        <% event.list_results.each do |placing| %>
+          <span><%= placing %></span><br>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  </div>
+</div>

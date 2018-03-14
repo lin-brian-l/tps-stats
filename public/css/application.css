@@ -294,3 +294,9 @@ input[type=text], input[type=password], textarea {
 .logo {
   width:160px;
 }
+
+.event-container {
+  display: grid;
+  grid-column-gap: 5%;
+  grid-template-columns: auto auto auto;
+}

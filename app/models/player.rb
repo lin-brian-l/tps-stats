@@ -23,8 +23,21 @@ class Player < ApplicationRecord
   end
 
   def full_tag
-    return self.sponsor + " | " + self.gamer_tag if self.sponsor.length > 0
+    sponsor = self.sponsor || ""
+    return sponsor + " | " + self.gamer_tag if sponsor.length > 0
     return self.gamer_tag
+  end
+
+  def top_8_placings
+    self.placings.select { |placing| placing.placing <= 8 }
+  end
+
+  def top_3_placings
+    self.placings.select { |placing| placing.placing <= 3 }
+  end
+
+  def nth_placings(number)
+    self.placings.select { |placing| placing.placing == number }
   end
 
 end
