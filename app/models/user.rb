@@ -4,7 +4,6 @@ class User < ApplicationRecord
   include BCrypt
 
   validates :username, { presence: true, uniqueness: true }
-  validates :email, { presence: true }
 
   validate :valid_password
   has_one :player
@@ -29,6 +28,11 @@ class User < ApplicationRecord
     elsif @password_text.length < 6
       errors.add(:password, "must be at least 6 characters long.")
     end
+  end
+
+  def change_password(new_password)
+    self.password = new_password
+    self.save
   end
 
 end

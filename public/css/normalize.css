@@ -95,6 +95,12 @@ a:hover {
   outline: 0;
 }
 
+ul {
+  margin: 0px;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 /* Text-level semantics
    ========================================================================== */
 

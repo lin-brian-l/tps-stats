@@ -10,10 +10,6 @@
 
 /* element styling */
 html {
-  height: 100%;
-  background-color: #32bb7d;
-  background: url(../images/diamond-bg.jpg);
-  background-attachment: fixed;
   line-height: 1.4;
 }
 
@@ -26,19 +22,24 @@ body {
 }
 
 a {
-  color: #32bb7d;
+  color: #DB2955;
   text-decoration: none;
 }
 
   a:hover {
-    color: #6ec7a5;
+    color: #ff5151;
     text-decoration: underline;
   }
 
-input[type=text], input[type=password], textarea {
-  color: #05724f;
+input[type=text], input[type=password], input[type=submit], select, textarea {
+  color: #DB2955;
 }
 
+ol {
+  margin: 0px;
+  padding-left: 1em;
+  padding-right: 1em;  
+}
 
 /* positioning */
 .block {
@@ -63,8 +64,8 @@ input[type=text], input[type=password], textarea {
 
 
 /* formatting */
-.bg-dk-green {
-  background-color: #05724f;
+.bg-grey {
+  background-color: #2E294E;
 }
 
 .bg-white {
@@ -96,9 +97,9 @@ input[type=text], input[type=password], textarea {
   color: #fefefe;
 }
 
-  a.c-white:hover {
-    color: #fefefe;
-  }
+a.c-white:hover {
+  color: #fefefe;
+}
 
 .clearfix:after {
    content: " "; /* Older browser do not support empty content */
@@ -146,6 +147,10 @@ input[type=text], input[type=password], textarea {
 
 .mar-b-16 {
   margin-bottom: 16em;
+}
+
+.mar-t-0 {
+  margin-top: 0em;
 }
 
 .mar-t-2 {
@@ -281,22 +286,54 @@ input[type=text], input[type=password], textarea {
 }
 
 .logo-container {
-  border: 5px solid #05724f;
-  color: #05724f;
-  width: 305px;
-  height: 305px;
-  border-radius: 50%;
-  padding: 20px;
-  margin: 0 auto;
   text-align: center;
 }
-
+ 
 .logo {
   width:160px;
+}
+
+.tournament-item-first {
+  margin-top: 0;
+}
+
+.index-container {
+  display: grid;
+  grid-column-gap: 5%;
+  grid-template-columns: auto auto;
+  margin-bottom: 0em;
 }
 
 .event-container {
   display: grid;
   grid-column-gap: 5%;
   grid-template-columns: auto auto auto;
+  border-bottom: 4px solid black;
 }
+
+.player-list {
+  -moz-column-count: 3;
+  -moz-column-gap: 40px;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 40px;
+  column-count: 3;
+  column-gap: 40px;
+}
+
+.logout-form {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.logout {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+  .logout:hover {
+    color: #ff5151;
+    text-decoration: underline;
+  }
+

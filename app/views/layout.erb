@@ -10,27 +10,25 @@
   <title>TPS Stats</title>
 </head>
 <body>
-  <header role="banner" class="mar-t-5 pad-t-2 pad-b-4 pad-s-1 wrap-float bg-white">
+  <header role="banner" class="pad-t-2 pad-b-2 pad-s-1 bg-white">
     <div class="max-w-700 center wrap-float">
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
-          <% if logged_in? %>
-            <% current_user %>
-          <li class="pipe-separate t-light-green left"><a href="/users/<%= @current_user.id %>"><%= @current_user.username %></a> | <%= erb :'session/_logout' %> | <a href="/entries">Home</a></li>
+          <% if logged_in? && is_admin?(current_user) %>
+          <li class="pipe-separate left"><%=erb :'session/_logout'%>| <a href="/users/admin">Admin Panel</a> | <a href="/tournaments">Home</a></li>
           <% else %>
-          <li class="pipe-separate t-light-green left"><a href="/users/new">Register</a> | <a href="/sessions/new">Login</a> | <a href="/">Home</a></li>
+          <li class="pipe-separate left"><a href="/sessions/new">Login</a> | <a href="/tournaments">Home</a></li>
           <% end %>
         </ul>
       </nav>
 
       <div class="logo-container">
         <img class="logo" src="/images/logo.png" class="center block">
-        <h1>Broccoli Blog</h1>
       </div>
     </div>
   </header>
 
-  <div class="bg-dk-green pad-t-2 pad-s-1 pad-b-8 mar-b-16 c-white">
+  <div class="bg-grey pad-t-2 pad-s-1 pad-b-8 mar-b-3 c-white">
     <div class="max-w-700 center">
       <%= yield %>
     </div>

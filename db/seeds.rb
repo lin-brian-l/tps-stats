@@ -1,200 +1,44 @@
-# players = [
-#   { :gamer_tag => "metroid",
-#     :sponsor => "" },
-#   { :gamer_tag => "Nave",
-#     :sponsor => "" },
-#   { :gamer_tag => "Kels",
-#     :sponsor => "GHQ" },
-#   { :gamer_tag => "Drugfreechu",
-#     :sponsor => "" }
-# ]
+user_array = [
+  {
+    "username": "Swanner",
+    "password": "change_me_now",
+    "admin": true
+  },
+  {
+    "username": "Mick",
+    "password": "change_me_now22",
+    "admin": true
+  },
+  {
+    "username": "AzN",
+    "password": "change_me_now333",
+    "admin": true
+  },
+  {
+    "username": "Havard",
+    "password": "change_me_now444",
+    "admin": true
+  },
+  {
+    "username": "metroid",
+    "password": "change_me_noww",
+    "admin": true
+  },
+  {
+    "username": "Pseudo",
+    "password": "change_me_nowww",
+    "admin": true
+  },
+  {
+    "username": "Pooch",
+    "password": "change_me_now444",
+    "admin": true
+  },
+  {
+    "username": "Serris",
+    "password": "change_me_now444",
+    "admin": true
+  },
+]
 
-# Player.create!(players)
-
-# tournament = {
-#   :name => "Testing1",
-#   :date => "3/2/18",
-#   :link => "asdfasdf"
-# }
-
-# Tournament.create(tournament)
-
-# events = [
-#   { name: "Melee Singles" }, { name: "Project M Singles" }
-# ]
-
-# events.each do |event|
-#   Event.create(event)
-#   Tournament.first.events << Event.last
-# end
-
-# Event.all.each do |event|
-#   Phase.create(name: "Bracket")
-#   event.phases << Phase.last
-# end
-
-# Phase.all.each do |phase|
-#   Group.create(name: "Bracket")
-#   phase.groups << Group.last
-# end
-
-# matches_PM = [
-#   { round_short: "WS",
-#     round_full: "Winners Semis",
-#     player1_id: 1,
-#     player2_id: 2,
-#     winner_id: 1,
-#     loser_id: 2,
-#     winner_score: 3,
-#     loser_score: 2
-#   },
-#   { round_short: "WS",
-#     round_full: "Winners Semis",
-#     player1_id: 3,
-#     player2_id: 4,
-#     winner_id: 4,
-#     loser_id: 3,
-#     winner_score: 3,
-#     loser_score: 0
-#   },
-#   { round_short: "WF",
-#     round_full: "Winners Finals",
-#     player1_id: 1,
-#     player2_id: 4,
-#     winner_id: 4,
-#     loser_id: 1,
-#     winner_score: 3,
-#     loser_score: 1
-#   },
-#   { round_short: "LS",
-#     round_full: "Losers Semis",
-#     player1_id: 2,
-#     player2_id: 3,
-#     winner_id: 2,
-#     loser_id: 3,
-#     winner_score: 3,
-#     loser_score: 2,
-#     loser_placing: 4
-#   },
-#   { round_short: "LF",
-#     round_full: "Losers Finals",
-#     player1_id: 1,
-#     player2_id: 2,
-#     winner_id: 2,
-#     loser_id: 1,
-#     winner_score: 3,
-#     loser_score: 1,
-#     loser_placing: 3
-#   },
-#   { round_short: "GF1",
-#     round_full: "Grand Finals 1",
-#     player1_id: 4,
-#     player2_id: 2,
-#     winner_id: 2,
-#     loser_id: 4,
-#     winner_score: 3,
-#     loser_score: 2
-#   },
-#   { round_short: "GF2",
-#     round_full: "Grand Finals 2",
-#     player1_id: 4,
-#     player2_id: 2,
-#     winner_id: 2,
-#     loser_id: 4,
-#     winner_score: 3,
-#     loser_score: 0,
-#     loser_placing: 2,
-#     winner_placing: 1
-#   }
-# ]
-
-# matches_PM.each do |match|
-#   Match.create(match)
-#   Group.second.matches << Match.last
-# end
-
-# matches_melee = [
-#   { round_short: "WS",
-#     round_full: "Winners Semis",
-#     player1_id: 1,
-#     player2_id: 2,
-#     winner_id: 1,
-#     loser_id: 2,
-#     winner_score: 3,
-#     loser_score: 0
-#   },
-#   { round_short: "WS",
-#     round_full: "Winners Semis",
-#     player1_id: 3,
-#     player2_id: 4,
-#     winner_id: 3,
-#     loser_id: 4,
-#     winner_score: 3,
-#     loser_score: 0
-#   },
-#   { round_short: "WF",
-#     round_full: "Winners Finals",
-#     player1_id: 1,
-#     player2_id: 4,
-#     winner_id: 3,
-#     loser_id: 1,
-#     winner_score: 3,
-#     loser_score: 0
-#   },
-#   { round_short: "LS",
-#     round_full: "Losers Semis",
-#     player1_id: 2,
-#     player2_id: 4,
-#     winner_id: 4,
-#     loser_id: 2,
-#     winner_score: 3,
-#     loser_score: 1,
-#     loser_placing: 4
-#   },
-#   { round_short: "LF",
-#     round_full: "Losers Finals",
-#     player1_id: 1,
-#     player2_id: 4,
-#     winner_id: 1,
-#     loser_id: 4,
-#     winner_score: 3,
-#     loser_score: 2,
-#     loser_placing: 3
-#   },
-#   { round_short: "GF1",
-#     round_full: "Grand Finals 1",
-#     player1_id: 3,
-#     player2_id: 1,
-#     winner_id: 3,
-#     loser_id: 1,
-#     winner_score: 3,
-#     loser_score: 0,
-#     loser_placing: 2,
-#     winner_placing: 1
-#   }
-# ]
-
-# matches_melee.each do |match|
-#   Match.create(match)
-#   Group.first.matches << Match.last
-# end
-
-# melee_matches = Event.first.matches
-# melee_matches.each do |match|
-#   if match.loser_placing
-#     EventEntrant.create(event_id: 1, placing: match.loser_placing, player_id: match.loser_id);
-#   end
-#   if match.winner_placing
-#     EventEntrant.create(event_id: 1, placing: match.winner_placing, player_id: match.winner_id)
-#   end
-# end
-
-# pm_matches = Event.second.matches
-# pm_matches.each do |match|
-#   if match.loser_placing
-#     EventEntrant.create(event_id: 2, placing: match.loser_placing, player_id: match.loser_id);
-#   end
-#   if match.winner_placing
-#     EventEntrant.create(event_id: 2, placing: match.winner_placing, player_id: match.winner_id)
-#   end
-# end
+User.create!(user_array)

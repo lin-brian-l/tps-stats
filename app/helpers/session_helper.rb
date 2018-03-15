@@ -2,20 +2,16 @@ def logged_in?
   !session[:user_id].nil?
 end
 
-def authenticate!
-  redirect '/sessions/new' unless logged_in?
-end
-
 def current_user
   @current_user ||= User.find_by(id: session[:user_id])
 end
 
-def authorized?(owner)
-  current_user == owner
+def is_admin?(current_user)
+  current_user.admin
 end
 
-def authorize!(owner)
-  redirect '/entries' unless authorized?(owner)
+def authorize!()
+  redirect '/touranments' unless is_admin(current_user)  
 end
 
 def get_suffix(placing)
@@ -34,4 +30,16 @@ end
 
 def reverse_tournament_date(array)
   array.sort_by { |element| element.tournament.date }.reverse
+end
+
+def return_tables_hash()
+  {
+    "Tournament": Tournament,
+    "Player": Player,
+    "Event": Event,
+    "EventEntrant": EventEntrant,
+    "Phase": Phase,
+    "Group": Group,
+    "Match": Match
+  }
 end

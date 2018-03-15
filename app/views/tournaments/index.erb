@@ -1,13 +1,22 @@
-<a href="/tournaments/new">Add a tournament</a>
+<% if current_user && is_admin?(current_user) %>
+<h1 class="text-c"><a href="/tournaments/new">Add a tournament</a></h1>
+<% end %>
 
-<h1>All Tournaments</h1>
+<div class="index-container">
+  <h1><u>All Tournaments</u></h1>
+  <h1><a href="/players">All Players</a></h1>
+</div>
 
-<% @tournaments.each do |tournament| %>
-<div class="tournament">
+<% @tournaments.each_with_index do |tournament, index| %>
+<div class="tournament-item">
+  <% if index == 0 %>
+  <h2 class="mar-t-0"><a href="/tournaments/<%= tournament.id %>"><%= tournament.name %></a></h2>
+  <% else %>
   <h2><a href="/tournaments/<%= tournament.id %>"><%= tournament.name %></a></h2>
+  <% end %>
   <%= erb :'/tournaments/_tournament_description', locals: { tournament: tournament } %>
 
-  <div class="event-container">
+  <div class="event-container pad-b-2">
   <% tournament.events.each do |event| %>
     <div class="event">
       <p><u><%= event.name %> Top 8</u></p> 
