@@ -24,36 +24,44 @@ $(document).ready(function() {
   });
 
   $(".table-form:first-child").on("change", function() {
-    var $table_form = $(this);
-    var id = $table_form.find(">:first-child").get(0).value;
-    var table = $("#table-query").get(0).value;
-    var data = {table: table, id: id};
-    var request = $.ajax({
-      url: '/database-calls/find-data',
-      data: data
-    })
-
-    request.done(response => {
-      console.log(response);
-      var result_obj = JSON.parse(response).result;
-      console.log("result_obj: ", result_obj);
-      for (var property in result_obj) {
-        console.log("property: ", property, "value: ", result_obj[property]);
-        if (property !== "created_at" || property !== "updated_at") {
-          let inputField = $("#" + property);
-          console.log(inputField);
-          inputField.val(result_obj[property]);
-        }
-      }  
-    })
+    autocomplete(this)
   })
 
   $(".table-form").on("submit", function() {
-
+    var $table_form = $(this);
+    
+    if () 
   })
 });
 
+function autocomplete(that) {
+  var $table_form = $(that);
+  var id = $table_form.find(">:first-child").get(0).value;
+  var table = $("#table-query").get(0).value;
+  var data = {table: table, id: id};
+  var request = $.ajax({
+    url: '/database-calls/find-data',
+    data: data
+  })
 
+  request.done(response => {
+    console.log(response);
+    var result_obj = JSON.parse(response).result;
+    console.log("result_obj: ", result_obj);
+    for (var property in result_obj) {
+      console.log("property: ", property, "value: ", result_obj[property]);
+      if (property !== "created_at" || property !== "updated_at") {
+        let inputField = $("#" + property);
+        console.log(inputField);
+        inputField.val(result_obj[property]);
+      }
+    }  
+  })
+}
+
+function checkEntries(element) {
+  return !!element.get(0).value
+}
 
 // $(document).ready(function() {
 //   $("form").on("submit", function() {
