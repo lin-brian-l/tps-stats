@@ -1,26 +1,27 @@
-# get '/users/new' do
-#   erb :'users/new'
-# end
-
-# post '/users' do
-#   user = User.new(params[:user])
-#   if user.save
-#     session[:user_id] = user.id
-#     redirect "/users/#{user.id}?welcome=true"
-#   else
-#     @errors = user.errors.full_messages
-#     erb :'users/new'
-#   end
-# end
-
-get '/users/admin' do 
-  # authorize!
-  erb :'users/admin'
+get '/users/settings' do
+  authorize!
+  @success = true if params[:success] 
+  @error = "Passwords did not match." if params[:error] == "password"
+  @error = "Old password is incorrect." if params[:error] == "old-password"
+  @user = User.find_by(id: session[:user_id])
+  erb :'users/settings'
 end
 
-# get '/users/:id' do
-#   @welcome = "You have successfully registered your account! Enjoy your stay!" if params[:welcome]
-#   @user = User.find_by(id: params[:id])
-#   @entries = @user.entries
-#   erb :'users/show'
-# end
+put '/users' do
+  authorize!
+  @user = User.find_by(id: session[:user_id])
+  if (params[:password1] != params[:password2])
+    redirect "users/settings?error=password"
+  end
+  if @user.authenticate(params[:old_password])
+    @user.change_password(params[:password1])
+    redirect "users/settings?success=true"
+  else 
+    redirect "users/settings?error=old-password"
+  end
+end
+
+get '/users/admin' do 
+  authorize!
+  erb :'users/admin'
+end

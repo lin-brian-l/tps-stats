@@ -31,7 +31,7 @@ a {
     text-decoration: underline;
   }
 
-input[type=text], input[type=password], input[type=submit], select, textarea {
+input[type=text], input[type=password], input[type=submit], select, textarea, input[name=datalist] {
   color: #DB2955;
 }
 
@@ -304,6 +304,13 @@ a.c-white:hover {
   margin-bottom: 0em;
 }
 
+.index-container-3 {
+  display: grid;
+  grid-column-gap: 5%;
+  grid-template-columns: auto auto auto;
+  margin-bottom: 0em;
+}
+
 .event-container {
   display: grid;
   grid-column-gap: 5%;
@@ -341,4 +348,8 @@ a.c-white:hover {
   display: grid;
   grid-column-gap: 5%;
   grid-template-columns: auto auto;
+}
+
+.scrollable {
+  overflow-y: auto !important;
 }

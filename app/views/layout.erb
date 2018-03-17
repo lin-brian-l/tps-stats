@@ -15,7 +15,7 @@
       <nav class="clearfix mar-b-1">
         <ul class="no-bullets no-margin no-padding right">
           <% if logged_in? && is_admin?(current_user) %>
-          <li class="pipe-separate left"><%=erb :'session/_logout'%>| <a href="/users/admin">Admin Panel</a> | <a href="/tournaments">Home</a></li>
+          <li class="pipe-separate left"><%=erb :'session/_logout'%>| <a href="/users/settings"><%= @current_user.username %></a> | <a href="/tournaments">Home</a></li>
           <% else %>
           <li class="pipe-separate left"><a href="/sessions/new">Login</a> | <a href="/tournaments">Home</a></li>
           <% end %>

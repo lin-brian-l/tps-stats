@@ -11,7 +11,7 @@ def is_admin?(current_user)
 end
 
 def authorize!()
-  redirect '/tournaments' unless is_admin?(current_user)  
+  redirect '/tournaments' unless logged_in? && is_admin?(current_user)  
 end
 
 def get_suffix(placing)
@@ -26,20 +26,4 @@ def get_suffix(placing)
     else
       "th"
   end
-end
-
-def reverse_tournament_date(array)
-  array.sort_by { |element| element.tournament.date }.reverse
-end
-
-def return_tables_hash()
-  {
-    "Tournament": Tournament,
-    "Player": Player,
-    "Event": Event,
-    "EventEntrant": EventEntrant,
-    "Phase": Phase,
-    "Group": Group,
-    "Match": Match
-  }
 end

@@ -1,0 +1,16 @@
+<p>Disclaimer: This page may not work on Safari or Internet Explorer.</p>
+<form action="/players/h2h-data" method="get">
+  <input list="playerlist" name="datalist">
+  <datalist id="playerlist" class="scrollable">
+    <% @players.each do |player| %>
+    <option value="<%= player.full_tag %>">
+    <% end %>
+<!--     <option value="Internet Explorer">
+    <option value="Firefox">
+    <option value="Chrome">
+    <option value="Opera">
+    <option value="Safari"> -->
+  </datalist>
+  <input type="submit">
+</form>
+
