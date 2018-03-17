@@ -4,6 +4,7 @@ class CreateEvents < ActiveRecord::Migration[5.0]
       t.integer :tournament_id
       t.string :name, { null: false }
       t.string :smash_gg_link
+      t.string :banner_image
 
       t.timestamps
     end

@@ -20,9 +20,9 @@
     <ul>
       <% @match_array[index].each do |played_match| %>
         <% if played_match.winner_id == @player.id && played_match.loser_id != nil %>
-      <li>Won against <%= played_match.loser.full_tag %> (<%= played_match.winner_score %>-<%= played_match.loser_score %>)
+      <li>Won against <%= played_match.loser.full_tag %> (<%= played_match.winner_score %>-<%= played_match.loser_score %>) in <%= played_match.round_full %></li> 
         <% elsif played_match.loser_id == @player.id %>
-      <li>Lost to <%= played_match.winner.full_tag %> (<%= played_match.loser_score %>-<%= played_match.winner_score %>)</li>
+      <li>Lost to <%= played_match.winner.full_tag %> (<%= played_match.loser_score %>-<%= played_match.winner_score %>) in <%=played_match.round_full %></li>
         <% end %>
       <% end %>
     </ul>

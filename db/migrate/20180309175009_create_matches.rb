@@ -12,6 +12,8 @@ class CreateMatches < ActiveRecord::Migration[5.0]
       t.integer :loser_score
       t.integer :loser_placing
       t.integer :winner_placing
+      t.string :match_duration
+      t.string :match_vods
 
       t.timestamps
     end 
