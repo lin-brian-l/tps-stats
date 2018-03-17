@@ -13,7 +13,8 @@
 #   end
 # end
 
-get '/users/admin' do
+get '/users/admin' do 
+  # authorize!
   erb :'users/admin'
 end
 

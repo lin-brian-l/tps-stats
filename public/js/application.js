@@ -2,69 +2,84 @@ $(document).ready(function() {
   $("#table-query").on("change", function() {
     var $selector = $(this);
     var query = $selector.get(0).value;
-    if (query !== "") {
-      var data = {value: query};
-      var request = $.ajax({
-        url: '/database-calls/table',
-        data: data      
-      })
-
-      request.done(response => {
-        $(".table-form").empty();
-        $(".column_list").empty();
-        JSON.parse(response).column_names.forEach(column => {
-          let inputField = "<input id='" + column + "' type='text' name='" + column +"' placeholder='" + column + "'><br>"
-          $(".table-form").append(inputField);
-          let inputBullet = "<li>" + column + "</li>"
-          $(".column_list").append(inputBullet);
-        })
-        let submitField = "<input type='submit' value='Submit'>"
-        $(".table-form").append(submitField)
-      })
-    } else {
+    var data = {value: query};
+    $.ajax({
+      url: '/database-calls/table',
+      data: data      
+    }).done(response => {
       $(".table-form").empty();
-      $(".column_list").empty();
-    }
+      $(".column-list").empty();
+      if (!response) return
+      JSON.parse(response).column_names.forEach(column => {
+        let inputField = "<input id='" + column + "' type='text' name='" + column +"' placeholder='" + column + "'><br>"
+        $(".table-form").append(inputField);
+        let inputBullet = "<li>" + column + "</li>"
+        $(".column-list").append(inputBullet);
+      })
+      let submitField = "<input type='submit' value='Submit'>"
+      $(".table-form").append(submitField)
+    })
+
   });
 
-  $(".table-form:first-child").on("change", function() {
-    autocomplete(this)
+  $(".table-form").on("change", "#id", function() {
+    var $idInput = $(this);
+    var id = $idInput.get(0).value;
+    var table = $("#table-query").get(0).value;
+    var data = {table: table, id: id};
+    $.ajax({
+      url: '/database-calls/find-data',
+      data: data
+    }).done(response => {
+      var result_obj = JSON.parse(response).result;
+      if (!result_obj) alert("There is no entry with id " + id + " in the " + table + " table.")
+      for (var property in result_obj) {
+        if (property !== "created_at" || property !== "updated_at") {
+          let inputField = $("#" + property);
+          inputField.val(result_obj[property]);
+        }
+      }  
+    })
   })
 
-  // $(".table-form").on("submit", function() {
-  //   var $table_form = $(this);
+  $(".table-grid-container").on("submit", ".table-form", function() {
+    event.preventDefault();
+    var $tableInputs = $(".table-form :input").slice(0, -1);
+    if (!checkInput($tableInputs[0])) {
+      alert("ID cannot be blank.");
+      return
+    }
+    if (checkBlankInputs($tableInputs.slice(1))) return
+    $form = $(this);
+    $table = $("#table-query").get(0).value;
+    var data = $form.serialize() + "&table=" + $table;
     
-  //   if () 
-  // })
+    $.ajax({
+      method: 'PUT',
+      url: '/database-calls/update-data',
+      data: data
+    }).done(response => {
+      var result_obj = JSON.parse(response).result;
+      var message = ""
+      for (var property in result_obj) {
+        message += property + ": " + result_obj[property] + "\n";
+      }
+      alert("Object has been updated with the following attributes:\n\n" + message);
+    })
+
+  })
 });
 
-function autocomplete(that) {
-  var $table_form = $(that);
-  var id = $table_form.find(">:first-child").get(0).value;
-  var table = $("#table-query").get(0).value;
-  var data = {table: table, id: id};
-  var request = $.ajax({
-    url: '/database-calls/find-data',
-    data: data
-  })
-
-  request.done(response => {
-    console.log(response);
-    var result_obj = JSON.parse(response).result;
-    console.log("result_obj: ", result_obj);
-    for (var property in result_obj) {
-      console.log("property: ", property, "value: ", result_obj[property]);
-      if (property !== "created_at" || property !== "updated_at") {
-        let inputField = $("#" + property);
-        console.log(inputField);
-        inputField.val(result_obj[property]);
-      }
-    }  
-  })
+function checkInput(element) {
+  return !!element.value;
 }
 
-function checkEntries(element) {
-  return !!element.get(0).value
+function checkBlankInputs(inputArray) {
+  var blank = true;
+  inputArray.each(function() {
+    if ($(this).get(0).value) blank = false;
+  })
+  return blank;
 }
 
 // $(document).ready(function() {

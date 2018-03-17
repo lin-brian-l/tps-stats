@@ -11,7 +11,7 @@ def is_admin?(current_user)
 end
 
 def authorize!()
-  redirect '/touranments' unless is_admin(current_user)  
+  redirect '/tournaments' unless is_admin?(current_user)  
 end
 
 def get_suffix(placing)
