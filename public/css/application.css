@@ -337,3 +337,8 @@ a.c-white:hover {
     text-decoration: underline;
   }
 
+.table-grid-container {
+  display: grid;
+  grid-column-gap: 5%;
+  grid-template-columns: auto auto;
+}

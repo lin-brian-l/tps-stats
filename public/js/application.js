@@ -11,15 +11,19 @@ $(document).ready(function() {
 
       request.done(response => {
         $(".table-form").empty();
+        $(".column_list").empty();
         JSON.parse(response).column_names.forEach(column => {
           let inputField = "<input id='" + column + "' type='text' name='" + column +"' placeholder='" + column + "'><br>"
           $(".table-form").append(inputField);
+          let inputBullet = "<li>" + column + "</li>"
+          $(".column_list").append(inputBullet);
         })
         let submitField = "<input type='submit' value='Submit'>"
         $(".table-form").append(submitField)
       })
     } else {
       $(".table-form").empty();
+      $(".column_list").empty();
     }
   });
 
@@ -27,11 +31,11 @@ $(document).ready(function() {
     autocomplete(this)
   })
 
-  $(".table-form").on("submit", function() {
-    var $table_form = $(this);
+  // $(".table-form").on("submit", function() {
+  //   var $table_form = $(this);
     
-    if () 
-  })
+  //   if () 
+  // })
 });
 
 function autocomplete(that) {
