@@ -17,7 +17,7 @@
   <% end %>
   <%= erb :'/tournaments/_tournament_description', locals: { tournament: tournament } %>
 
-  <div class="event-container pad-b-2">
+  <div class="event-container bottom-border pad-b-2">
   <% tournament.events.each do |event| %>
     <div class="event">
       <p><u><%= event.name %> Top 8</u></p> 

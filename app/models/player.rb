@@ -16,6 +16,17 @@ class Player < ApplicationRecord
     played_matches_1.or(played_matches_2)
   end
 
+  def matches_against(opponent_id)
+    self.played_matches.select { |match| match.player1_id == opponent_id || match.player2_id == opponent_id }
+  end
+
+  def match_record(opponent_id)
+    matches = self.matches_against(opponent_id)
+    wins = matches.select { |match| match.winner_id == self.id }.count
+    losses = matches.select { |match| match.loser_id == self.id }.count
+    return "#{wins}-#{losses}"
+  end
+
   def no_dq(match_array)
     match_array.select { |played_match| played_match.loser_id != nil }
   end
