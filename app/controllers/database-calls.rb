@@ -42,7 +42,7 @@ get '/database-calls/get-h2h-data' do
         "date": played_match.tournament.date
       }
     end
-    record = player1.match_record(player2_id)
+    record = player1.match_record(player2_id, matches)
     result = {
       "matches": matches, 
       "tournaments": tournaments,

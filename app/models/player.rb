@@ -20,8 +20,7 @@ class Player < ApplicationRecord
     self.played_matches.select { |match| match.player1_id == opponent_id || match.player2_id == opponent_id }
   end
 
-  def match_record(opponent_id)
-    matches = self.matches_against(opponent_id)
+  def match_record(opponent_id, matches)
     wins = matches.select { |match| match.winner_id == self.id }.count
     losses = matches.select { |match| match.loser_id == self.id }.count
     return "#{wins}-#{losses}"
