@@ -73,16 +73,16 @@ ol {
 }
 
 .button {
-  background: #32bb7d;
-  color: #fefefe;
+  background: white;
+  color: #DB2955;
   padding: 1em;
   text-decoration: none;
 }
 
   .button:hover {
-    color: white;
+    color: grey;
     text-decoration: none;
-    background-color: #6ec7a5;
+    background-color: #cecece;
   }
 
 .c-dk-green {
@@ -281,6 +281,10 @@ a.c-white:hover {
   width: 100%;
 }
 
+.bottom-border {
+  border-bottom: 4px solid black;
+}
+
 .wrap-float {
   overflow: auto;
 }
@@ -315,7 +319,6 @@ a.c-white:hover {
   display: grid;
   grid-column-gap: 5%;
   grid-template-columns: auto auto auto;
-  border-bottom: 4px solid black;
 }
 
 .player-list {
