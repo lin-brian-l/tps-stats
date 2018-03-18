@@ -10,6 +10,7 @@ end
 
 get '/players/:id' do
   @player = Player.find_by(id: params[:id]) 
+  return erb :'404' if !@player 
   @tournaments = @player.tournaments.distinct.count
   @played_matches = @player.no_dq(@player.played_matches).count
   @won_matches = @player.no_dq(@player.won_matches).count

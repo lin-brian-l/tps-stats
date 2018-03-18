@@ -1,6 +1,0 @@
-<h1 id="new_post_link"><a href="/entries/new">Write about broccoli!</a></h1>
-
-<% @entries.each do |entry| %>
-<h2><a href="/entries/<%= entry.id %>"><%= entry.title %></a></h2>
-  <%= erb :'/entries/_entry_description', locals: { entry: entry} %>
-<% end %>

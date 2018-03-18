@@ -6,12 +6,14 @@ get '/tournaments' do
 end
 
 get '/tournaments/new' do
+  authorize!
   @link = ""
   erb :'tournaments/new'  
 end
 
 get '/tournaments/:id' do
   @tournament = Tournament.find_by(id: params[:id])
+  return erb :'404' if !@tournament 
   @events = @tournament.events
   erb :'tournaments/show'  
 end

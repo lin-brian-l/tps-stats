@@ -1,4 +1,5 @@
 get '/database-calls/table' do 
+  authorize!
   if request.xhr?
     return if params[:value] == ""
     tables_hash = return_tables_hash()
@@ -8,6 +9,7 @@ get '/database-calls/table' do
 end
 
 get '/database-calls/find-data' do 
+  authorize!
   if request.xhr?
     tables_hash = return_tables_hash()
     obj = tables_hash[params[:table].to_sym].find_by(id: params[:id])

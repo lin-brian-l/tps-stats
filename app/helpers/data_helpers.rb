@@ -17,3 +17,17 @@ end
 def percent(num1, num2)
   (num1.to_f / num2.to_f * 100).round(1)
 end
+
+def get_suffix(placing)
+  return "th" if (placing.between?(4,20))
+  case placing.digits.first
+    when 1
+      "st"
+    when 2
+      "nd"
+    when 3
+      "rd"
+    else
+      "th"
+  end
+end
