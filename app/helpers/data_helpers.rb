@@ -31,3 +31,7 @@ def get_suffix(placing)
       "th"
   end
 end
+
+def downcase_and_squash(string)
+  string.gsub(/\s+/, "").downcase
+end

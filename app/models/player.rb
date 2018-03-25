@@ -70,4 +70,15 @@ class Player < ApplicationRecord
     match_array.select { |match| match.winner_id == self.id }
   end
 
+  def self.gamer_tag_hash()
+    Hash[self.all.collect { |player| [downcase_and_squash(player.gamer_tag), player.id] }]
+  end
+
+  def self.find_by_gamer_tag(new_tag, new_sponsor, player_hash)
+    downcased_tag = downcase_and_squash(new_tag)
+    if player_hash.key?(downcased_tag)
+      self.find(player_hash[downcased_tag])
+    end
+  end
+
 end
