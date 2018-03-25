@@ -74,10 +74,12 @@ class Player < ApplicationRecord
     Hash[self.all.collect { |player| [downcase_and_squash(player.gamer_tag), player.id] }]
   end
 
-  def self.find_by_gamer_tag(new_tag, new_sponsor, player_hash)
+  def self.create_or_find_by_gamer_tag(new_tag, player_hash, new_sponsor = nil)
     downcased_tag = downcase_and_squash(new_tag)
     if player_hash.key?(downcased_tag)
       self.find(player_hash[downcased_tag])
+    else 
+      self.create(gamer_tag: new_tag, sponsor: new_sponsor)
     end
   end
 

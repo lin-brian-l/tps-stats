@@ -35,3 +35,5 @@ end
 def downcase_and_squash(string)
   string.gsub(/\s+/, "").downcase
 end
+
+# 11: 1493850

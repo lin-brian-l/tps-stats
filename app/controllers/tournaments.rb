@@ -73,12 +73,12 @@ post '/tournaments' do
 
         create_players(player_array)
 
+        updated_player_hash = Player.gamer_tag_hash
         standing_array = group_json["entities"]["standings"]
-        create_standing(standing_array, player_array)
+        create_standing(standing_array, player_array, updated_player_hash)
 
         matches_array = group_json["entities"]["sets"]
-        create_matches(matches_array, player_array)        
-
+        create_matches(matches_array, player_array, updated_player_hash)        
       end
     else
       @error = "A group with ID #{group["id"]} already exists."
@@ -132,21 +132,22 @@ def save_group(group)
 end
 
 def create_players(player_array)
+  player_hash = Player.gamer_tag_hash
   player_array.each do |player| 
-    Player.find_or_create_by(gamer_tag: player["gamerTag"], sponsor: player["prefix"])
+    Player.create_or_find_by_gamer_tag(player["gamerTag"], player_hash, player["prefix"])
   end
 end
 
-def create_standing(standing_array, player_array)
+def create_standing(standing_array, player_array, player_hash)
   standing_array.each do |standing|
-    competitor_id = find_player_id(standing["entrantId"].to_s, player_array)
+    competitor_id = find_player_id(standing["entrantId"].to_s, player_array, player_hash)
     event_id = Phase.find(standing["phaseId"]).event.id
     standing_hash = {
       "player_id": competitor_id,
       "event_id": event_id,
       "placing": standing["placement"],
       "games_played": standing["gamesPlayed"],
-      "games_won": standing["games_won"],
+      "games_won": standing["gamesWon"],
       "sets_played": standing["setsPlayed"],
       "sets_won": standing["setsWon"]
     }
@@ -154,10 +155,10 @@ def create_standing(standing_array, player_array)
   end
 end
 
-def create_matches(matches_array, player_array)
+def create_matches(matches_array, player_array, player_hash)
   matches_array.each do |played_set|
-    competitor_1_id = find_player_id(played_set["entrant1Id"].to_s, player_array)
-    competitor_2_id = find_player_id(played_set["entrant2Id"].to_s, player_array)
+    competitor_1_id = find_player_id(played_set["entrant1Id"].to_s, player_array, player_hash)
+    competitor_2_id = find_player_id(played_set["entrant2Id"].to_s, player_array, player_hash)
     match_hash = {
       "id": played_set["id"],
       "group_id": played_set["phaseGroupId"],
@@ -176,13 +177,8 @@ def create_matches(matches_array, player_array)
   end
 end
 
-def find_player(entrant_id, player_array)
+def find_player_id(entrant_id, player_array, player_hash)
   return nil if entrant_id.length == 0
   competitor_tag = player_array.find { |player| entrant_id == player["entrantId"] }["gamerTag"]
-  Player.find_by(gamer_tag: competitor_tag)
-end
-
-def find_player_id(entrant_id, player_array)
-  player = find_player(entrant_id, player_array)
-  player ? player.id : nil
+  player_hash[downcase_and_squash(competitor_tag)]
 end
