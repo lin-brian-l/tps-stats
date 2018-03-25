@@ -6,19 +6,28 @@
 <h1><%= @player.full_tag %></h1>
 <div class="player-stats">
   <h3>Player Stats</h3>
-  <ul>
-    <li>Attended Tournaments: <%= @tournaments %></li>
-    <li>Played Matches: <%= @played_matches %></li>
-    <li>Won Matches: <%= @won_matches %> (<%= @win_percent %>%)</li>
-    <% if @top_8_placings.length > 0 %>
-    <li>Top 8 placings: </li>
-      <% @top_8_placings.each do |placing| %>
-      <span><%= placing.placing %><%= get_suffix(placing.placing) %> place in <%= placing.event.name %> at <a href="/tournaments/<%= placing.tournament.id %>"><%= placing.tournament.name %></a></span><br>
-      <% end %>
+  <p>Attended Tournaments: <%= @tournaments %></p>
+  <div class="event-stats-container">
+    <% @match_data.each do |event| %>
+    <div class="event-stats">
+      <u><%= event[0] %></u>
+      <ul>
+        <li>Attended Events: <%= event[1] %></li>
+        <li>Played Matches: <%= event[2] %></li>
+        <li>Won Matches: <%= event[3] %> (<%= event[4] %>%)</li>
+        <% if event[5].length > 0 %>
+        <li>Top 8 Placings:</li>
+          <% event[5].each do |placing| %>
+          <span><%= placing.placing %><%= get_suffix(placing.placing) %> place in <%= placing.event.name %> at <a href="/tournaments/<%= placing.tournament.id %>"><%= placing.tournament.name %></a></span><br>
+          <% end %>
+        <% end %>
+      </ul>
+    </div><br>
     <% end %>
-  </ul>
+  </div>
 </div>
-<div class="event-stats">
+
+<div class="all-event-stats">
   <h3>Event Stats</h3>
   <% @placings.each_with_index do |placing, index| %>
     <p><u><%= placing.placing %><%= get_suffix(placing.placing) %> place in <%= placing.event.name %> at <a href="/tournaments/<%= placing.tournament.id %>"><%= placing.tournament.name %></a></u></p>

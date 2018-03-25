@@ -46,12 +46,28 @@ class Player < ApplicationRecord
     self.placings.select { |placing| placing.placing <= 8 }
   end
 
+  def top_8_placings_by_game(game)
+    self.top_8_placings.select { |placing| placing.event.name == game }
+  end
+
   def top_3_placings
     self.placings.select { |placing| placing.placing <= 3 }
   end
 
   def nth_placings(number)
     self.placings.select { |placing| placing.placing == number }
+  end
+
+  def events_by_game(game)
+    self.events.select {|event| event.name == game }
+  end
+
+  def matches_by_game(game)
+    self.played_matches.select {|match| match.event.name == game }
+  end
+
+  def find_won_matches(match_array)
+    match_array.select { |match| match.winner_id == self.id }
   end
 
 end
