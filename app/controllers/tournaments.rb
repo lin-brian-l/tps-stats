@@ -20,7 +20,7 @@ end
 
 post '/tournaments' do
   @link = params[:tournament][:link]
-  link = /(?<=tournament\/)(.+)[\d]/.match(@link)
+  link = /(?<=tournament\/)[^\/]*/.match(@link)
   http = HTTP.get("https://api.smash.gg/tournament/" + link[0] + "?expand[]=phase&expand[]=groups&expand[]=event")
   json_obj = JSON.parse(http)
   tournament_obj = json_obj["entities"]["tournament"]
